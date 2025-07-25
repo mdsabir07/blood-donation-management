@@ -2,15 +2,27 @@ import { useForm } from 'react-hook-form';
 import Lottie from "lottie-react";
 import { Link, useLocation, useNavigate } from 'react-router';
 import LottieRegister from '../../../assets/Lotties/register.json'
+import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { createUser } = useAuth();
+
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from || '/';
 
     const onSubmit = data => {
-        console.log(data)
+        console.log(data);
+        createUser(data.email, data.password)
+            .then(res => {
+                console.log(res.user);
+                Swal.fire('Successful!', 'Registration successful.', 'success');
+                navigate(from);
+            })
+            .catch(error => console.log(error));
+
     }
     return (
         <div className="max-w-7xl mx-auto flex justify-center items-center flex-col md:flex-row gap-5 px-12 my-12">
