@@ -3,7 +3,7 @@ import logo from '../../../assets/DonateBloodLogo.png'
 const DonateBloodLogo = () => {
     return (
         <>
-            <Link to="/"><img src={logo} alt="" className='w-20' /></Link>
+            <Link to="/"><img src={logo} alt="" className='w-15 sm:w-20' /></Link>
         </>
     );
 };

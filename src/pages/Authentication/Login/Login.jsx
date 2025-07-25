@@ -1,0 +1,63 @@
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Link, useLocation, useNavigate } from 'react-router';
+import LottieSignIn from '../../../assets/Lotties/SignIn.json';
+import Lottie from 'lottie-react';
+
+const Login = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from || '/';
+
+    const onSubmit = data => {
+        console.log(data);
+    }
+
+    return (
+        <div className="max-w-7xl mx-auto flex justify-center items-center flex-col md:flex-row gap-5 px-12 my-12">
+            <div className="w-full max-w-md p-8 space-y-3 rounded-xl border border-gray-300">
+                <h1 className="text-2xl font-bold text-center">Create an account</h1>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    {/* Email field */}
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="email" className="block ">Email</label>
+                        <input
+                            type="email" {...register("email", { required: true })}
+                            aria-invalid={errors.email ? "true" : "false"}
+                            placeholder="Email"
+                            className="w-full px-4 py-3 rounded-md border border-gray-300" />
+                        {errors.email?.type === "required" && (
+                            <p role="alert" className='text-red-500'>Email is required</p>
+                        )}
+                    </div>
+                    {/* Password field */}
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="password" className="block">Password</label>
+                        <input
+                            type="password"
+                            {...register("password", { required: true, minLength: 6 })}
+                            aria-invalid={errors.password ? "true" : "false"}
+                            placeholder="Password"
+                            className="w-full px-4 py-3 rounded-md border border-gray-300" />
+                        {errors.password?.type === "required" && (
+                            <p role='alert' className='text-red-500'>Password required</p>
+                        )}
+                        {errors.password?.type === "minLength" && (
+                            <p role='alert' className='text-red-500'>Minimum characters is 6 or longer</p>
+                        )}
+                    </div>
+                    <button type='submit' className="block w-full p-3 text-center rounded-sm bg-primary cursor-pointer">Login</button>
+                </form>
+                <p className="text-xs text-center sm:px-6">Don't have an account?
+                    <Link to="/register" className="underline text-primary"> Register</Link>
+                </p>
+            </div>
+            <div className="w-full">
+                <Lottie style={{ width: 'full' }} animationData={LottieSignIn} loop={true} />
+            </div>
+        </div>
+    );
+};
+
+export default Login;
