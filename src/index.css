@@ -1,2 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
-@plugin "daisyui";
+
+@plugin "daisyui" {
+  themes: light --default, dark;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: true;
+  --color-primary: #E90001;
+  /* --color-secondary: #03373D; */
+}
+
+.font-urbanist {
+  font-family: "Urbanist", sans-serif;
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+
+/* Dark mode styles */
+html.dark body {
+  background-color: #070709;
+  color: white;
+}
+
+/* Light mode styles */
+body {
+  background-color: white;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar a,
+nav a {
+  transition: color 0.3s ease;
+}
