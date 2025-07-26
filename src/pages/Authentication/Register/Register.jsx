@@ -1,80 +1,161 @@
 import { useForm } from 'react-hook-form';
 import Lottie from "lottie-react";
 import { Link, useLocation, useNavigate } from 'react-router';
-import LottieRegister from '../../../assets/Lotties/register.json'
+import LottieRegister from '../../../assets/Lotties/register.json';
 import useAuth from '../../../hooks/useAuth';
+import useAxios from '../../../hooks/useAxios';
+import useDistricts from '../../../hooks/useDistricts';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
 
 const Register = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const { createUser } = useAuth();
-
-    const location = useLocation();
+    const { createUser, updateUserProfile, loading, setLoading } = useAuth();
+    const axios = useAxios();
     const navigate = useNavigate();
+    const location = useLocation();
     const from = location.state?.from || '/';
 
-    const onSubmit = data => {
-        console.log(data);
-        createUser(data.email, data.password)
-            .then(res => {
-                console.log(res.user);
-                Swal.fire({
-                    icon: "success",
-                    title: "Registration successful!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate(from);
-            })
-            .catch(error => console.log(error));
+    const { data: districtsData = [], isLoading } = useDistricts();
+    const [upazilas, setUpazilas] = useState([]);
+    const [avatarUrl, setAvatarUrl] = useState('');
 
-    }
+    const handleDistrictChange = (e) => {
+        const selectedDistrict = e.target.value;
+        const found = districtsData.find(d => d.district === selectedDistrict);
+        setUpazilas(found?.upazilas || []);
+    };
+
+    const handleImageUpload = async (e) => {
+        const imageFile = e.target.files[0];
+        if (!imageFile) return;
+
+        const formData = new FormData();
+        formData.append('image', imageFile);
+
+        try {
+            const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`, formData);
+            const imageUrl = res.data.data.display_url;
+            setAvatarUrl(imageUrl);
+        } catch (error) {
+            console.error('Image upload failed', error);
+            Swal.fire('Error', 'Image upload failed', 'error');
+        }
+    };
+
+    const onSubmit = async (data) => {
+        if (!avatarUrl) {
+            return Swal.fire('Error', 'Please upload an avatar image.', 'error');
+        }
+
+        setLoading(true);
+
+        try {
+            // 1. Firebase Auth create
+            const userCredential = await createUser(data.email, data.password);
+            const user = userCredential.user;
+
+            // 2. MongoDB user creation
+            const userInfo = {
+                name: data.name,
+                email: data.email,
+                avatar: avatarUrl,
+                bloodGroup: data.bloodGroup,
+                district: data.district,
+                upazila: data.upazila,
+                status: 'active',
+                role: 'donor'
+            };
+            await axios.post('/users', userInfo);
+
+            // 3. Firebase profile update
+            const userProfile = {
+                displayName: data.name,
+                photoURL: avatarUrl
+            };
+            await updateUserProfile(userProfile);
+            console.log('Profile name and pic updated');
+
+            Swal.fire({
+                icon: "success",
+                title: "Registration successful!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            navigate(from);
+        } catch (error) {
+            console.error(error);
+            Swal.fire('Error', error.message || 'Registration failed', 'error');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
     return (
         <div className="max-w-7xl mx-auto flex justify-center items-center flex-col md:flex-row gap-5 px-12 my-12">
             <div className="w-full p-8 space-y-3 rounded-xl border border-gray-300">
                 <h1 className="text-2xl font-bold text-center">Create an account</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    {/* Name field */}
+
+                    {/* Name */}
                     <div className="space-y-1 text-sm">
-                        <label htmlFor="name" className="block ">Your Name</label>
-                        <input
-                            type="text" {...register("name", { required: true })}
-                            aria-invalid={errors.name ? "true" : "false"}
-                            placeholder="Your Name"
-                            className="w-full px-4 py-3 rounded-md border border-gray-300" />
-                        {errors.name?.type === "required" && (
-                            <p role="alert" className='text-red-500'>Name is required</p>
+                        <label className="block">Your Name</label>
+                        <input type="text" {...register("name", { required: true })}
+                            className="w-full px-4 py-3 rounded-md border" />
+                        {errors.name && <p className='text-red-500'>Name is required</p>}
+                    </div>
+
+                    {/* Avatar Upload */}
+                    <div className="space-y-1 text-sm">
+                        <label className="block">Avatar Image</label>
+                        <input type="file" accept="image/*" onChange={handleImageUpload}
+                            className="w-full px-4 py-3 rounded-md border" />
+                        {avatarUrl && (
+                            <img src={avatarUrl} alt="Avatar preview"
+                                className="w-24 h-24 mt-2 object-cover rounded-lg border" />
                         )}
                     </div>
-                    {/* Image field */}
-                    {/* <div className="space-y-1 text-sm">
-                    <label htmlFor="image" className="block ">Your profile image</label>
-                    <input
-                        type="file"
-                        onChange={handleImageUpload}
-                        placeholder="Your profile image"
-                        className="w-full px-4 py-3 rounded-md border border-gray-300" />
 
-                    {profilePic && (
-                        <div className="mt-4">
-                            <p className="text-sm text-gray-600">Preview:</p>
-                            <img
-                                src={profilePic}
-                                alt="Profile Preview"
-                                className="w-24 h-24 object-cover rounded-lg border border-gray-300"
-                            />
-                        </div>
-                    )}
-                </div> */}
-
-                    {/* Blood group */}
+                    {/* District */}
                     <div className="space-y-1 text-sm">
-                        <label htmlFor="bloodGroup" className="block ">Blood group</label>
+                        <label>District</label>
                         <select
-                            {...register("bloodGroup", { required: true })}
-                            aria-invalid={errors.email ? "true" : "false"}
+                            {...register('district', { required: true })}
+                            onChange={handleDistrictChange}
                             className="w-full px-4 py-3 rounded-md border border-gray-300"
                         >
+                            <option value="">Select district</option>
+                            {districtsData.map(d => (
+                                <option key={d.id} value={d.district}>
+                                    {d.district}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.district && <p className="text-red-500">District is required</p>}
+                    </div>
+
+
+                    {/* Upazila */}
+                    <div className="space-y-1 text-sm">
+                        <label>Upazila</label>
+                        <select {...register('upazila', { required: true })}
+                            className="w-full px-4 py-3 rounded-md border">
+                            <option value="">Select upazila</option>
+                            {upazilas.map(u => (
+                                <option key={u} value={u}>{u}</option>
+                            ))}
+                        </select>
+                        {errors.upazila && <p className="text-red-500">Upazila is required</p>}
+                    </div>
+
+                    {/* Blood Group */}
+                    <div className="space-y-1 text-sm">
+                        <label>Blood Group</label>
+                        <select {...register("bloodGroup", { required: true })}
+                            className="w-full px-4 py-3 rounded-md border">
+                            <option value="">Select blood group</option>
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>
                             <option value="B+">B+</option>
@@ -84,65 +165,52 @@ const Register = () => {
                             <option value="O+">O+</option>
                             <option value="O-">O-</option>
                         </select>
-                        {errors.email?.type === "required" && (
-                            <p role="alert" className='text-red-500'>Blood group is required</p>
+                        {errors.bloodGroup && <p className="text-red-500">Blood group is required</p>}
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-1 text-sm">
+                        <label>Email</label>
+                        <input type="email" {...register("email", { required: true })}
+                            className="w-full px-4 py-3 rounded-md border" />
+                        {errors.email && <p className="text-red-500">Email is required</p>}
+                    </div>
+
+                    {/* Password */}
+                    <div className="space-y-1 text-sm">
+                        <label>Password</label>
+                        <input type="password" {...register("password", {
+                            required: true,
+                            minLength: 6
+                        })}
+                            className="w-full px-4 py-3 rounded-md border" />
+                        {errors.password && errors.password.type === "required" && (
+                            <p className='text-red-500'>Password is required</p>
+                        )}
+                        {errors.password && errors.password.type === "minLength" && (
+                            <p className='text-red-500'>Minimum length is 6</p>
                         )}
                     </div>
 
-                    {/* Email field */}
+                    {/* Confirm Password */}
                     <div className="space-y-1 text-sm">
-                        <label htmlFor="email" className="block ">Email</label>
-                        <input
-                            type="email" {...register("email", { required: true })}
-                            aria-invalid={errors.email ? "true" : "false"}
-                            placeholder="Email"
-                            className="w-full px-4 py-3 rounded-md border border-gray-300" />
-                        {errors.email?.type === "required" && (
-                            <p role="alert" className='text-red-500'>Email is required</p>
-                        )}
+                        <label>Confirm Password</label>
+                        <input type="password" {...register("confirmPassword", {
+                            required: true,
+                            validate: (value) => value === watch("password") || "Passwords do not match"
+                        })}
+                            className="w-full px-4 py-3 rounded-md border" />
+                        {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message || "Confirm Password is required"}</p>}
                     </div>
-                    {/* Password field */}
-                    <div className="space-y-1 text-sm">
-                        <label htmlFor="password" className="block">Password</label>
-                        <input
-                            type="password"
-                            {...register("password", { required: true, minLength: 6 })}
-                            aria-invalid={errors.password ? "true" : "false"}
-                            placeholder="Password"
-                            className="w-full px-4 py-3 rounded-md border border-gray-300" />
-                        {errors.password?.type === "required" && (
-                            <p role='alert' className='text-red-500'>Password required</p>
-                        )}
-                        {errors.password?.type === "minLength" && (
-                            <p role='alert' className='text-red-500'>Minimum characters is 6 or longer</p>
-                        )}
-                    </div>
-                    {/* Confirm Password field */}
-                    <div className="space-y-1 text-sm mt-4">
-                        <label htmlFor="confirmPassword" className="block">Confirm Password</label>
-                        <input
-                            type="password"
-                            {...register("confirmPassword", {
-                                required: true,
-                                validate: (value) => value === watch("password") || "Passwords do not match"
-                            })}
-                            aria-invalid={errors.confirmPassword ? "true" : "false"}
-                            placeholder="Confirm Password"
-                            className="w-full px-4 py-3 rounded-md border border-gray-300"
-                        />
-                        {errors.confirmPassword?.type === "required" && (
-                            <p role='alert' className='text-red-500'>Confirm Password is required</p>
-                        )}
-                        {errors.confirmPassword?.type === "validate" && (
-                            <p role='alert' className='text-red-500'>{errors.confirmPassword.message}</p>
-                        )}
-                    </div>
-                    <button type='submit' className="block w-full p-3 text-center rounded-sm bg-primary cursor-pointer">Register</button>
+
+                    <button type="submit" className="block w-full p-3 rounded-sm bg-primary text-white cursor-pointer">Register</button>
                 </form>
-                <p className="text-xs text-center sm:px-6">Already have an account?
-                    <Link to="/login" className="underline text-primary"> Login</Link>
+
+                <p className="text-xs text-center mt-4">
+                    Already have an account? <Link to="/login" className="underline text-primary">Login</Link>
                 </p>
             </div>
+
             <div className="w-full">
                 <Lottie style={{ width: 'full' }} animationData={LottieRegister} loop={true} />
             </div>

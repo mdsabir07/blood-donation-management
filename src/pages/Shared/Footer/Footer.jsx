@@ -3,10 +3,8 @@ import DonateBloodLogo from '../DonateBloodLogo/DonateBloodLogo';
 const Footer = () => {
     const navItems = <>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/donate-blood">Donate Blood</NavLink>
-        <NavLink to="/about">About Us</NavLink>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-        <NavLink to="/services">Services</NavLink>
+        <NavLink to="/donation-requests">Donation requests</NavLink>
+        <NavLink to="/blog">Blog</NavLink>
     </>
     return (
         <footer className="footer footer-horizontal footer-center rounded p-10">

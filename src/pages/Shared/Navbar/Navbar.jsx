@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
-    console.log('User from useAuth:', user);
     const handleLogOut = () => {
         logOut()
             .then(res => {
@@ -22,16 +21,36 @@ const Navbar = () => {
     }
     const navItems = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/services">Services</NavLink></li>
-        <li><NavLink to="/about">About Us</NavLink></li>
-        {
-            user ? <>
-                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-                <li><button onClick={handleLogOut} className='btn bg-primary cursor-pointer'>Log out</button></li>
-                
+        <li><NavLink to="/donation-requests">Donation requests</NavLink></li>
+        <li><NavLink to="/blog">Blog</NavLink></li>
+
+        {user ? (
+            <>
+                <li>
+                    <div className="dropdown dropdown-end">
+                        <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 border p-[2px] border-gray-300 rounded-full">
+                                <img
+                                    src={user.photoURL || "https://i.ibb.co/2nFqQ2x/default-avatar.png"}
+                                    alt={user.displayName}
+                                    title={user.displayName}
+                                    className="rounded-full"
+                                />
+                            </div>
+                        </div>
+                        <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-base-100 text-white right-0">
+                            <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+                            <li><button onClick={handleLogOut}>Logout</button></li>
+                        </ul>
+                    </div>
+                </li>
+
             </>
-            : <li><NavLink to="/login" className='btn bg-primary'>Login</NavLink></li>
-        }
+        ) : (
+            <>
+                <li><NavLink to="/login" className='btn bg-primary'>Login</NavLink></li>
+            </>
+        )}
         <li><NavLink to="/donate-blood" className='btn bg-primary'>Donate Blood</NavLink></li>
     </>
     return (
