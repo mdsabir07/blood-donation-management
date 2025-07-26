@@ -18,7 +18,12 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(res => {
                 console.log(res.user);
-                Swal.fire('Successful!', 'Registration successful.', 'success');
+                Swal.fire({
+                    icon: "success",
+                    title: "Registration successful!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 navigate(from);
             })
             .catch(error => console.log(error));

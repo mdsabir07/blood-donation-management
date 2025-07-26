@@ -19,7 +19,12 @@ const Login = () => {
         signIn(data.email, data.password)
             .then(res => {
                 console.log(res.user);
-                Swal.fire('Successful!', 'Login successful.', 'success');
+                Swal.fire({
+                    icon: "success",
+                    title: "Login successful!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 navigate(from);
             })
             .catch(error => console.log(error));
@@ -27,8 +32,8 @@ const Login = () => {
 
     return (
         <div className="max-w-7xl mx-auto flex justify-center items-center flex-col md:flex-row gap-5 px-12 my-12">
-            <div className="w-full max-w-md p-8 space-y-3 rounded-xl border border-gray-300">
-                <h1 className="text-2xl font-bold text-center">Create an account</h1>
+            <div className="w-full p-8 space-y-3 rounded-xl border border-gray-300">
+                <h1 className="text-2xl font-bold text-center">Login</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     {/* Email field */}
                     <div className="space-y-1 text-sm">
