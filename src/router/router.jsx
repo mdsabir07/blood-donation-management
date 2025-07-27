@@ -7,6 +7,8 @@ import DonationRequest from "../pages/DonationRequest/DonationRequest";
 import Blog from "../pages/Blog/Blog";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "../routes/PrivateRoute";
+import Forbidden from "../pages/Forbidden/Forbidden";
+import SearchDonors from "../pages/SearchDonors/SearchDonors";
 
 export const router = createBrowserRouter([
     {
@@ -32,12 +34,25 @@ export const router = createBrowserRouter([
             {
                 path: 'login',
                 Component: Login
+            },
+            {
+                path: 'search-donors',
+                Component: SearchDonors
+            },
+            {
+                path: 'forbidden',
+                Component: Forbidden
             }
         ]
     },
     {
         path: 'dashboard',
-        element: <PrivateRoute><DashboardLayout /></PrivateRoute>
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+        children: [
+            {
+                path: ''
+            }
+        ]
     }
     
 ])
