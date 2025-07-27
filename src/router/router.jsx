@@ -18,6 +18,7 @@ import AllDonationRequests from "../pages/Dashboard/AllDonationRequests/AllDonat
 import AdminRoute from "../routes/AdminRoute";
 import ContentManagement from "../pages/Dashboard/Blogs/ContentManagement/ContentManagement";
 import AddBlog from "../pages/Dashboard/Blogs/AddBlog/AddBlog";
+import EditBlog from "../pages/Dashboard/Blogs/EditBlog/EditBlog";
 
 export const router = createBrowserRouter([
     {
@@ -91,10 +92,10 @@ export const router = createBrowserRouter([
                 path: 'content-management/add-blog',
                 element: <AdminRoute><AddBlog /></AdminRoute>
             },
-            // {
-            //     path: 'content-management/edit-blog/:id',
-            //     Component: EditBlog // optional: create if implementing blog editing
-            // }
+            {
+                path: 'content-management/edit-blog/:id',
+                element: <AdminRoute><EditBlog /></AdminRoute>
+            }
 
         ]
     }
