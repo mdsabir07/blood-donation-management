@@ -85,8 +85,13 @@ const Register = () => {
 
             navigate(from);
         } catch (error) {
-            console.error(error);
-            Swal.fire('Error', error.message || 'Registration failed', 'error');
+            // ⛔️ Handle 409 - email exists in MongoDB
+            if (error.response?.status === 409) {
+                Swal.fire("Email already in use!", "Try logging in instead.", "warning");
+            } else {
+                console.error(error);
+                Swal.fire('Error', error.message || 'Registration failed', 'error');
+            }
         } finally {
             setLoading(false);
         }
@@ -124,7 +129,7 @@ const Register = () => {
                         <select
                             {...register('district', { required: true })}
                             onChange={handleDistrictChange}
-                            className="w-full px-4 py-3 rounded-md border border-gray-300"
+                            className="w-full px-4 py-3 rounded-md border"
                         >
                             <option value="">Select district</option>
                             {districtsData.map(d => (

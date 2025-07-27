@@ -20,24 +20,9 @@
   font-family: "Inter", sans-serif;
 }
 
-/* Dark mode styles */
-html.dark body {
-  background-color: #070709;
-  color: white;
-}
-
-/* Light mode styles */
-body {
-  background-color: white;
-  color: black;
-  transition: background-color 0.3s, color 0.3s;
-}
-
 .navbar a,
 nav a {
   transition: color 0.3s ease;
 }
-
-/* custom CSS */
 
 

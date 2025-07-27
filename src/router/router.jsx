@@ -9,6 +9,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "../routes/PrivateRoute";
 import Forbidden from "../pages/Forbidden/Forbidden";
 import SearchDonors from "../pages/SearchDonors/SearchDonors";
+import Profile from "../pages/Dashboard/Profile/Profile";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
     {
@@ -50,7 +52,12 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             {
-                path: ''
+                index: true,
+                Component: DashboardHome
+            },
+            {
+                path: 'profile',
+                Component: Profile
             }
         ]
     }
