@@ -15,10 +15,10 @@ import CreateDonationRequest from "../pages/Dashboard/CreateDonationRequest/Crea
 import MyDonationRequests from "../pages/Dashboard/MyDonationRequests/MyDonationRequests";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AllDonationRequests from "../pages/Dashboard/AllDonationRequests/AllDonationRequests";
-import AdminRoute from "../routes/AdminRoute";
 import ContentManagement from "../pages/Dashboard/Blogs/ContentManagement/ContentManagement";
 import AddBlog from "../pages/Dashboard/Blogs/AddBlog/AddBlog";
 import EditBlog from "../pages/Dashboard/Blogs/EditBlog/EditBlog";
+import AdminOrVolunteerRoute from "../routes/AdminOrVolunteerRoute";
 
 export const router = createBrowserRouter([
     {
@@ -32,6 +32,10 @@ export const router = createBrowserRouter([
             {
                 path: 'donation-requests',
                 Component: DonationRequest
+            },
+            {
+                path: '/donation-requests/:id',
+                element: <PrivateRoute><DonationDetails /></PrivateRoute>
             },
             {
                 path: 'blog',
@@ -86,15 +90,15 @@ export const router = createBrowserRouter([
             // ✅ Blog Management Pages
             {
                 path: 'content-management',
-                element: <AdminRoute><ContentManagement /></AdminRoute>
+                element: <AdminOrVolunteerRoute><ContentManagement /></AdminOrVolunteerRoute>
             },
             {
                 path: 'content-management/add-blog',
-                element: <AdminRoute><AddBlog /></AdminRoute>
+                element: <AdminOrVolunteerRoute><AddBlog /></AdminOrVolunteerRoute>
             },
             {
                 path: 'content-management/edit-blog/:id',
-                element: <AdminRoute><EditBlog /></AdminRoute>
+                element: <AdminOrVolunteerRoute><EditBlog /></AdminOrVolunteerRoute>
             }
 
         ]

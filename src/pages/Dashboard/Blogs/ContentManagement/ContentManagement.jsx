@@ -9,7 +9,7 @@ import Loading from '../../../Shared/Loading/Loading';
 const ContentManagement = () => {
     const axiosSecure = useAxiosSecure();
     const { role, isRoleLoading } = useUserRole();
-    const { loading: authLoading } = useAuth();
+    const { user, loading: authLoading } = useAuth();
     const navigate = useNavigate();
 
     const [blogs, setBlogs] = useState([]);
@@ -17,6 +17,8 @@ const ContentManagement = () => {
     const [page, setPage] = useState(1);
     const [total, setTotal] = useState(0);
     const limit = 10;
+
+    const isAdmin = role === 'admin';
 
     const fetchBlogs = async () => {
         try {
@@ -38,7 +40,7 @@ const ContentManagement = () => {
     const totalPages = Math.ceil(total / limit);
 
     const handlePublishToggle = async (blog) => {
-        if (role !== 'admin') {
+        if (!isAdmin) {
             return Swal.fire('Access Denied', 'Only admins can publish or unpublish blogs.', 'error');
         }
 
@@ -64,7 +66,7 @@ const ContentManagement = () => {
     };
 
     const handleDelete = async (id) => {
-        if (role !== 'admin') {
+        if (!isAdmin) {
             return Swal.fire('Access Denied', 'Only admins can delete blogs.', 'error');
         }
 
@@ -81,7 +83,7 @@ const ContentManagement = () => {
                 Swal.fire('Deleted', 'Blog deleted successfully.', 'success');
                 fetchBlogs();
             } catch (error) {
-                Swal.fire(`Error ${error}`, 'Failed to delete blog.', 'error');
+                Swal.fire('Error', 'Failed to delete blog.', 'error');
             }
         }
     };
@@ -130,7 +132,7 @@ const ContentManagement = () => {
                                 Status: <span className="capitalize">{blog.status}</span>
                             </p>
                             <div className="flex gap-2 flex-wrap">
-                                {role === 'admin' && (
+                                {isAdmin && (
                                     <>
                                         <button
                                             onClick={() => handlePublishToggle(blog)}
@@ -148,6 +150,8 @@ const ContentManagement = () => {
                                         </button>
                                     </>
                                 )}
+
+                                {/* Both admin and volunteer can edit */}
                                 <button
                                     onClick={() =>
                                         navigate(`/dashboard/content-management/edit-blog/${blog._id}`)
