@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import JoditEditor from 'jodit-react';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import { useNavigate } from 'react-router';
 
 const AddBlog = () => {
     const axiosSecure = useAxiosSecure();
@@ -24,7 +24,7 @@ const AddBlog = () => {
         formData.append('image', file);
 
         try {
-            const res = await fetch(`https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY`, {
+            const res = await fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`, {
                 method: 'POST',
                 body: formData,
             });
@@ -37,7 +37,7 @@ const AddBlog = () => {
                 Swal.fire('Error', 'Failed to upload image', 'error');
             }
         } catch (error) {
-            Swal.fire('Error', 'Failed to upload image', 'error');
+            Swal.fire(`Error ${error}`, 'Failed to upload image', 'error');
         } finally {
             setUploading(false);
         }
@@ -88,6 +88,7 @@ const AddBlog = () => {
                         id="thumbnail"
                         accept="image/*"
                         onChange={handleImageUpload}
+                        className="w-full px-3 py-2 rounded-md input input-bordered"
                     />
                     {uploading && <p>Uploading...</p>}
                     {thumbnailUrl && (
@@ -102,6 +103,7 @@ const AddBlog = () => {
                 <div>
                     <label className="block font-semibold mb-1">Content</label>
                     <JoditEditor
+                        className='text-base-content bg-base-content'
                         ref={editor}
                         value={content}
                         tabIndex={1}

@@ -9,6 +9,8 @@ const SideNav = () => {
         <li><NavLink to="/dashboard/my-donation-requests">My Donation Request</NavLink></li>
         <li><NavLink to="/dashboard/all-donation-request">All Donation Requests</NavLink></li>
         <li><NavLink to="/dashboard/all-users">All Users</NavLink></li>
+        <li><NavLink to="/dashboard/content-management">Content management</NavLink></li>
+        <li><NavLink to="/dashboard/content-management/add-blog">Add Blog</NavLink></li>
         <li><ThemeToggle /></li>
     </>
     return (

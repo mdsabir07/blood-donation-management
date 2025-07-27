@@ -80,7 +80,7 @@ const DonorDashboardHome = () => {
                                         {req.status === 'inprogress' && req.donor ? (
                                             <>
                                                 <p>{req.donor.name}</p>
-                                                <p className="text-xs text-gray-500">{req.donor.email}</p>
+                                                <p className="text-xs">{req.donor.email}</p>
                                             </>
                                         ) : 'N/A'}
                                     </td>
