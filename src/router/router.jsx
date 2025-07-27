@@ -11,6 +11,7 @@ import Forbidden from "../pages/Forbidden/Forbidden";
 import SearchDonors from "../pages/SearchDonors/SearchDonors";
 import Profile from "../pages/Dashboard/Profile/Profile";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import CreateDonationRequest from "../pages/Dashboard/CreateDonationRequest/CreateDonationRequest";
 
 export const router = createBrowserRouter([
     {
@@ -58,8 +59,13 @@ export const router = createBrowserRouter([
             {
                 path: 'profile',
                 Component: Profile
+            },
+            {
+                path: 'create-donation-request',
+                Component: CreateDonationRequest
             }
+
         ]
     }
-    
+
 ])

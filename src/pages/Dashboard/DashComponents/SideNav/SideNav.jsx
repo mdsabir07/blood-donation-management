@@ -5,6 +5,7 @@ const SideNav = () => {
 
     const navItems = <>
         <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
+        <li><NavLink to="/dashboard/create-donation-request">Create Donate Request</NavLink></li>
         <li><ThemeToggle /></li>
     </>
     return (
@@ -20,8 +21,8 @@ const SideNav = () => {
                 </ul>
             </div>
 
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu px-1">
+            <div className="hidden lg:flex">
+                <ul className="menu gap-3">
                     {navItems}
                 </ul>
             </div>
