@@ -6,6 +6,9 @@ const SideNav = () => {
     const navItems = <>
         <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
         <li><NavLink to="/dashboard/create-donation-request">Create Donate Request</NavLink></li>
+        <li><NavLink to="/dashboard/my-donation-requests">My Donation Request</NavLink></li>
+        <li><NavLink to="/dashboard/all-donation-request">All Donation Requests</NavLink></li>
+        <li><NavLink to="/dashboard/all-users">All Users</NavLink></li>
         <li><ThemeToggle /></li>
     </>
     return (

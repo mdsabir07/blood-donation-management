@@ -112,7 +112,7 @@ const Profile = () => {
                         <select
                             {...register("district", { required: true })}
                             onChange={handleDistrictChange}
-                            className="w-full px-4 py-3 rounded-md border"
+                            className="select select-bordered w-full"
                             disabled={!isEditing}
                         >
                             <option value="">Select district</option>
@@ -129,7 +129,7 @@ const Profile = () => {
                         <label>Upazila</label>
                         <select
                             {...register("upazila", { required: true })}
-                            className="w-full px-4 py-3 rounded-md border"
+                            className="select select-bordered w-full"
                             disabled={!isEditing}
                         >
                             <option value="">Select upazila</option>

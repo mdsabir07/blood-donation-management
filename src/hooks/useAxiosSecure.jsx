@@ -8,7 +8,7 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
 
     useEffect(() => {
         const interceptor = axiosSecure.interceptors.request.use(
@@ -29,12 +29,11 @@ const useAxiosSecure = () => {
             },
             (error) => Promise.reject(error)
         );
-
-        // Cleanup on unmount to avoid duplicate interceptors
         return () => {
             axiosSecure.interceptors.request.eject(interceptor);
         };
     }, [user]);
+
 
     return axiosSecure;
 };

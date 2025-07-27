@@ -1,9 +1,9 @@
 
 
 // import VolunteerDashboardHome from './VolunteerDashboardHome';
-// import AdminDashboardHome from './AdminDashboardHome';
 import useAuth from '../../../hooks/useAuth';
 import useUserRole from '../../../hooks/useUserRole';
+import AdminDashboardHome from '../AdminDashboardHome/AdminDashboardHome';
 import DonorDashboardHome from './DonorDashboardHome/DonorDashboardHome';
 
 const DashboardHome = () => {
@@ -14,7 +14,7 @@ const DashboardHome = () => {
 
     if (role === 'donor') return <DonorDashboardHome />;
     // if (role === 'volunteer') return <VolunteerDashboardHome />;
-    // if (role === 'admin') return <AdminDashboardHome />;
+    if (role === 'admin') return <AdminDashboardHome />;
 
     return <p className="text-red-500">No valid role found.</p>;
 };

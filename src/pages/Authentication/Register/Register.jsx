@@ -129,7 +129,7 @@ const Register = () => {
                         <select
                             {...register('district', { required: true })}
                             onChange={handleDistrictChange}
-                            className="w-full px-4 py-3 rounded-md border"
+                            className="select select-bordered w-full"
                         >
                             <option value="">Select district</option>
                             {districtsData.map(d => (
@@ -146,7 +146,7 @@ const Register = () => {
                     <div className="space-y-1 text-sm">
                         <label>Upazila</label>
                         <select {...register('upazila', { required: true })}
-                            className="w-full px-4 py-3 rounded-md border">
+                            className="select select-bordered w-full">
                             <option value="">Select upazila</option>
                             {upazilas.map(u => (
                                 <option key={u} value={u}>{u}</option>
