@@ -38,7 +38,7 @@ const Navbar = () => {
                                 />
                             </div>
                         </div>
-                        <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-base-100 text-white right-0">
+                        <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-base-100 right-0">
                             <li><NavLink to="/dashboard">Dashboard</NavLink></li>
                             <li><button onClick={handleLogOut}>Logout</button></li>
                         </ul>
@@ -71,7 +71,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 text-white rounded-box z-1 mt-3 w-52 p-2 shadow gap-2 right-0">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow gap-2 right-0">
                         {navItems}
                     </ul>
                 </div>

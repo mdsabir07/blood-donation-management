@@ -33,7 +33,7 @@ const Features = () => {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="card shadow-md hover:shadow-xl hover:bg-red-50 transition-all duration-300"
+                            className="card shadow-md hover:shadow-xl transition-all duration-300"
                         >
                             <div className="card-body items-center text-center">
                                 {feature.icon}

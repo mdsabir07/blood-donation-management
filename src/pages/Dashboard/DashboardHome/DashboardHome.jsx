@@ -1,9 +1,9 @@
 
 
-// import VolunteerDashboardHome from './VolunteerDashboardHome';
 import useAuth from '../../../hooks/useAuth';
 import useUserRole from '../../../hooks/useUserRole';
 import AdminDashboardHome from '../AdminDashboardHome/AdminDashboardHome';
+import VolunteerDashboardHome from '../VolunteerDashboardHome/VolunteerDashboardHome';
 import DonorDashboardHome from './DonorDashboardHome/DonorDashboardHome';
 
 const DashboardHome = () => {
@@ -13,7 +13,7 @@ const DashboardHome = () => {
     if (loading || roleLoading) return <div className="text-center py-20">Loading...</div>;
 
     if (role === 'donor') return <DonorDashboardHome />;
-    // if (role === 'volunteer') return <VolunteerDashboardHome />;
+    if (role === 'volunteer') return <VolunteerDashboardHome />;
     if (role === 'admin') return <AdminDashboardHome />;
 
     return <p className="text-red-500">No valid role found.</p>;

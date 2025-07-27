@@ -22,12 +22,19 @@ const Login = () => {
                 Swal.fire({
                     icon: "success",
                     title: "Login successful!",
-                    showConfirmButton: false,
                     timer: 1500
                 });
                 navigate(from);
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error);
+                Swal.fire({
+                    icon: "error",
+                    title: `${error}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
     }
 
     return (

@@ -11,7 +11,7 @@ const ContactUs = () => {
 
             <div className="grid md:grid-cols-2 gap-10">
                 {/* Contact Form */}
-                <form className="space-y-6 p-6 rounded-box shadow hover:bg-red-50">
+                <form className="space-y-6 p-6 rounded-box shadow">
                     
                     <h3 className="text-2xl font-semibold">Get in Touch</h3>
                     <div>
@@ -21,7 +21,7 @@ const ContactUs = () => {
                         <input
                             type="text"
                             id="name"
-                            className="input input-bordered bg-transparent border-primary w-full"
+                            className="input input-bordered bg-transparent w-full"
                             placeholder="Your full name"
                         />
                     </div>
@@ -33,7 +33,7 @@ const ContactUs = () => {
                         <input
                             type="email"
                             id="email"
-                            className="input input-bordered bg-transparent border-primary w-full"
+                            className="input input-bordered bg-transparent w-full"
                             placeholder="you@example.com"
                         />
                     </div>
@@ -44,7 +44,7 @@ const ContactUs = () => {
                         </label>
                         <textarea
                             id="message"
-                            className="textarea textarea-bordered bg-transparent border-primary w-full h-32"
+                            className="textarea textarea-bordered bg-transparent w-full h-32"
                             placeholder="Type your message here..."
                         ></textarea>
                     </div>
@@ -53,7 +53,7 @@ const ContactUs = () => {
                 </form>
 
                 {/* Contact Info */}
-                <div className="p-6 rounded-box shadow flex flex-col hover:bg-red-50 justify-center items-start space-y-4">
+                <div className="p-6 rounded-box shadow flex flex-col justify-center items-start space-y-4">
                     <img src={getInTouch} alt="" className="max-w-lg" />
                     <p className="">We're here to support your donation journey.</p>
                     <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
