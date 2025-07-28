@@ -18,25 +18,33 @@ const DonationRequests = () => {
                 console.error('Failed to fetch donation requests', err);
                 setLoading(false);
             });
-    }, []);
+    }, [axiosInstance]);
 
     if (loading) return <Loading />;
 
     return (
-        <div className="p-6 max-w-5xl mx-auto">
-            <h2 className="text-2xl font-bold mb-4 text-center">🩸 Pending Blood Donation Requests</h2>
+        <div className="p-6 max-w-7xl mx-auto">
+            <h2 className="text-2xl sm:text-5xl font-bold mb-8 text-center">🩸Blood Donation Requests</h2>
 
             {requests.length === 0 ? (
-                <p className="text-center text-gray-500">No pending requests at the moment.</p>
+                <p className="text-center">No pending requests at the moment.</p>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {requests.map(req => (
                         <div key={req._id} className="card bg-base-100 shadow-md p-4">
                             <h3 className="text-xl font-semibold">{req.recipientName}</h3>
-                            <p><strong>Location:</strong> {req.location}</p>
+                            
+                            <p>
+                                <strong>Location:</strong>{' '}
+                                {req.fullAddress ||
+                                    `${req.hospitalName || ''}, ${req.recipientUpazila || ''}, ${req.recipientDistrict || ''}`}
+                            </p>
+
                             <p><strong>Blood Group:</strong> {req.bloodGroup}</p>
-                            <p><strong>Date:</strong> {req.date}</p>
-                            <p><strong>Time:</strong> {req.time}</p>
+
+                            <p><strong>Date:</strong> {req.donationDate || 'N/A'}</p>
+                            <p><strong>Time:</strong> {req.donationTime || 'N/A'}</p>
+
                             <Link to={`/donation-requests/${req._id}`} className="btn btn-sm btn-primary mt-3">
                                 View
                             </Link>

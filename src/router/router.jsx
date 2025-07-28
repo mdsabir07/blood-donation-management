@@ -19,6 +19,7 @@ import ContentManagement from "../pages/Dashboard/Blogs/ContentManagement/Conten
 import AddBlog from "../pages/Dashboard/Blogs/AddBlog/AddBlog";
 import EditBlog from "../pages/Dashboard/Blogs/EditBlog/EditBlog";
 import AdminOrVolunteerRoute from "../routes/AdminOrVolunteerRoute";
+import DonationDetails from "../pages/DonationDetails/DonationDetails";
 
 export const router = createBrowserRouter([
     {

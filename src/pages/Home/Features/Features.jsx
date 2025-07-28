@@ -27,7 +27,7 @@ const Features = () => {
     return (
         <section className="py-16">
             <div className="text-center">
-                <h2 className="text-4xl font-bold text-neutral mb-4">Why Donate With Us?</h2>
+                <h2 className="text-4xl font-bold mb-4">Why Donate With Us?</h2>
                 <p className="text-lg mb-10">We make giving blood meaningful, modern, and impactful.</p>
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                     {features.map((feature, index) => (

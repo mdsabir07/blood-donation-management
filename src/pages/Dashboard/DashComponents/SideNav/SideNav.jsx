@@ -1,16 +1,87 @@
 import ThemeToggle from '../../../Shared/ThemeToggle/ThemeToggle';
 import { NavLink } from 'react-router';
+import { FaUser, FaPlusSquare, FaClipboardList, FaListAlt, FaUsers, FaCog, FaBlog } from 'react-icons/fa';
 
 const SideNav = () => {
 
     const navItems = <>
-        <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
-        <li><NavLink to="/dashboard/create-donation-request">Create Donate Request</NavLink></li>
-        <li><NavLink to="/dashboard/my-donation-requests">My Donation Request</NavLink></li>
-        <li><NavLink to="/dashboard/all-donation-request">All Donation Requests</NavLink></li>
-        <li><NavLink to="/dashboard/all-users">All Users</NavLink></li>
-        <li><NavLink to="/dashboard/content-management">Content management</NavLink></li>
-        <li><NavLink to="/dashboard/content-management/add-blog">Add Blog</NavLink></li>
+        <li>
+            <NavLink
+                to="/dashboard/profile"
+                className={({ isActive }) =>
+                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
+                }
+            >
+                <FaUser className="text-lg" />
+                Profile
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/dashboard/create-donation-request"
+                className={({ isActive }) =>
+                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
+                }
+            >
+                <FaPlusSquare className="text-lg" />
+                Create Donation Request
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/dashboard/my-donation-requests"
+                className={({ isActive }) =>
+                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
+                }
+            >
+                <FaClipboardList className="text-lg" />
+                My Donation Requests
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/dashboard/all-donation-request"
+                className={({ isActive }) =>
+                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
+                }
+            >
+                <FaListAlt className="text-lg" />
+                All Donation Requests
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/dashboard/all-users"
+                className={({ isActive }) =>
+                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
+                }
+            >
+                <FaUsers className="text-lg" />
+                All Users
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/dashboard/content-management"
+                className={({ isActive }) =>
+                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
+                }
+            >
+                <FaCog className="text-lg" />
+                Content Management
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/dashboard/content-management/add-blog"
+                className={({ isActive }) =>
+                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
+                }
+            >
+                <FaBlog className="text-lg" />
+                Add Blog
+            </NavLink>
+        </li>
         <li><ThemeToggle /></li>
     </>
     return (

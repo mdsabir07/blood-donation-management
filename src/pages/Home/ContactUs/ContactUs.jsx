@@ -15,7 +15,7 @@ const ContactUs = () => {
                     
                     <h3 className="text-2xl font-semibold">Get in Touch</h3>
                     <div>
-                        <label className="label" htmlFor="name">
+                        <label htmlFor="name">
                             <span className="label-text">Name</span>
                         </label>
                         <input
@@ -27,7 +27,7 @@ const ContactUs = () => {
                     </div>
 
                     <div>
-                        <label className="label" htmlFor="email">
+                        <label htmlFor="email">
                             <span className="label-text">Email</span>
                         </label>
                         <input
@@ -39,7 +39,7 @@ const ContactUs = () => {
                     </div>
 
                     <div>
-                        <label className="label" htmlFor="message">
+                        <label htmlFor="message">
                             <span className="label-text">Message</span>
                         </label>
                         <textarea
@@ -55,13 +55,13 @@ const ContactUs = () => {
                 {/* Contact Info */}
                 <div className="p-6 rounded-box shadow flex flex-col justify-center items-start space-y-4">
                     <img src={getInTouch} alt="" className="max-w-lg" />
-                    <p className="">We're here to support your donation journey.</p>
+                    <p>We're here to support your donation journey.</p>
                     <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
                         <div className="flex items-center gap-3">
                         <FaPhoneAlt className="text-primary text-xl" />
                         <span className="">+1 (234) 567-8901</span>
                     </div>
-                    <div className="flex items-center gap-3 text-sm text-gray-500">
+                    <div className="flex items-center gap-3">
                         <FaRegClock className="text-primary text-xl" />
                         <p>Available Mon–Fri, 9:00AM–5:00PM (Local Time)</p>
                     </div>
