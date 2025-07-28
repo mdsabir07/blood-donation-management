@@ -3,13 +3,13 @@ import useAxios from '../../hooks/useAxios';
 import Loading from '../Shared/Loading/Loading';
 import { Link } from 'react-router';
 
-const BlogListPage = () => {
+const Blog = () => {
   const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(6); // Number of blogs per page
+  const [itemsPerPage] = useState(3); // Number of blogs per page
   const [totalBlogs, setTotalBlogs] = useState(0); // Total number of published blogs
   const axiosInstance = useAxios(); 
 
@@ -22,11 +22,11 @@ const BlogListPage = () => {
         const response = await axiosInstance.get('/public-blogs', {
           params: {
             page: currentPage,
-            limit: itemsPerPage,
+            limit: itemsPerPage
           }
         });
         setBlogs(response.data.blogs);
-        setTotalBlogs(response.data.total); 
+        setTotalBlogs(response.data.total); // Set total blogs from the API response
       } catch (err) {
         console.error("Failed to fetch blogs:", err);
         setError("Failed to load blogs. Please try again later.");
@@ -62,7 +62,7 @@ const BlogListPage = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="max-w-7xl mx-auto p-4">
       <h1 className="text-4xl font-bold text-center mb-8 text-primary">Our Blog</h1>
 
       {/* Search Bar */}
@@ -92,13 +92,16 @@ const BlogListPage = () => {
               />
             </figure>
             <div className="card-body p-6">
-              <h2 className="card-title text-2xl font-semibold mb-3">
+              <h2 className="card-title text-xl font-semibold mb-3">
                 {blog.title}
               </h2>
               {/* Display a snippet of the content */}
-              <p className="text-gray-700 text-base mb-4 line-clamp-3" dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 150) + '...' }}></p>
+              <p className="text-base mb-4 line-clamp-3" dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 150) + '...' }}></p>
+              {/* Added Created and Updated Dates */}
+              <p className="text-sm">Created: {new Date(blog.createdAt).toLocaleDateString()}</p>
+              <p className="text-sm mb-4">Updated: {new Date(blog.updatedAt).toLocaleDateString()}</p>
               <div className="card-actions justify-end">
-                <Link to={`/public-blogs/${blog._id}`} className="btn btn-primary rounded-full px-6 py-2 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300">
+                <Link to={`/blog/${blog._id}`} className="btn btn-primary rounded-sm px-6 py-2 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300">
                   Read More
                 </Link>
               </div>
@@ -139,4 +142,4 @@ const BlogListPage = () => {
   );
 };
 
-export default BlogListPage;
+export default Blog;

@@ -20,6 +20,7 @@ import AddBlog from "../pages/Dashboard/Blogs/AddBlog/AddBlog";
 import EditBlog from "../pages/Dashboard/Blogs/EditBlog/EditBlog";
 import AdminOrVolunteerRoute from "../routes/AdminOrVolunteerRoute";
 import DonationDetails from "../pages/DonationDetails/DonationDetails";
+import BlogDetails from "../pages/Blog/BlogDetails/BlogDetails";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
             {
                 path: 'blog',
                 Component: Blog
+            },
+            {
+                path: 'blog/:id',
+                Component: BlogDetails
             },
             {
                 path: 'register',

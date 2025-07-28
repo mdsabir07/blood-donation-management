@@ -1,5 +1,5 @@
 import ThemeToggle from '../../../Shared/ThemeToggle/ThemeToggle';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { FaUser, FaPlusSquare, FaClipboardList, FaListAlt, FaUsers, FaCog, FaBlog } from 'react-icons/fa';
 
 const SideNav = () => {
@@ -83,6 +83,9 @@ const SideNav = () => {
             </NavLink>
         </li>
         <li><ThemeToggle /></li>
+        <li><Link to="/" className="btn btn-primary rounded-sm px-3 py-3 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300">
+            Back to Main Home Pange
+        </Link></li>
     </>
     return (
         <>
