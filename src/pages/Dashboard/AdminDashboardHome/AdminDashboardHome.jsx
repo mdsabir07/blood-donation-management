@@ -5,6 +5,7 @@ import useUserRole from '../../../hooks/useUserRole';
 import { FaUsers, FaHandHoldingUsd, FaTint } from 'react-icons/fa';
 import Loading from '../../Shared/Loading/Loading';
 import { Link } from 'react-router';
+import DonationRequestCharts from '../DashComponents/DonationRequestCharts/DonationRequestCharts';
 
 const AdminDashboardHome = () => {
     const { user, loading: authLoading } = useAuth();
@@ -77,6 +78,8 @@ const AdminDashboardHome = () => {
                     </div>
                 </div>
             </div>
+            {/* charts */}
+            <DonationRequestCharts />
         </div>
     );
 };
