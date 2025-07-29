@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
-import Swal from 'sweetalert2'; // For user feedback
-
-// Stripe imports
+import Swal from 'sweetalert2'; 
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import useAuth from '../../../hooks/useAuth';
@@ -23,21 +21,19 @@ const Funding = () => {
     const [funds, setFunds] = useState([]);
     const [totalFunds, setTotalFunds] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    const limit = 10; // Number of items per page
+    const limit = 6; 
     const [loadingFunds, setLoadingFunds] = useState(true);
     const [error, setError] = useState(null);
 
-    const [isModalOpen, setIsModalOpen] = useState(false); // Controls fund donation modal visibility
-    const [clientSecret, setClientSecret] = useState(''); // Stores Stripe client secret for payment
-    const [fundAmount, setFundAmount] = useState(0); // Amount to be donated, in dollars
+    const [isModalOpen, setIsModalOpen] = useState(false); 
+    const [clientSecret, setClientSecret] = useState('');
+    const [fundAmount, setFundAmount] = useState(0); 
 
     // Function to fetch paginated fund transactions from the backend
     const fetchFunds = async () => {
         setLoadingFunds(true);
         setError(null);
         try {
-            // This endpoint needs to be implemented on your backend to return
-            // { funds: [...], total: <count> }
             const res = await axiosSecure.get(`/funds?page=${currentPage}&limit=${limit}`);
             setFunds(res.data.funds || []);
             setTotalFunds(res.data.total || 0);
@@ -55,13 +51,12 @@ const Funding = () => {
         if (role && (role === 'admin' || role === 'volunteer' || role === 'donor')) {
             fetchFunds();
         }
-    }, [axiosSecure, role, currentPage]); // Re-fetch when page changes or role is confirmed
+    }, [axiosSecure, role, currentPage]); 
 
 
     // Handler for clicking the "Give Fund" button
     const handleGiveFundClick = () => {
         setIsModalOpen(true);
-        // Reset clientSecret and fundAmount when opening the modal for a new transaction
         setClientSecret('');
         setFundAmount(0);
     };
@@ -69,7 +64,6 @@ const Funding = () => {
     // Handler for changes in the fund amount input field
     const handleAmountChange = (e) => {
         const value = parseFloat(e.target.value);
-        // Ensure value is a number, default to 0 if not
         setFundAmount(isNaN(value) ? 0 : value);
     };
 
@@ -84,22 +78,18 @@ const Funding = () => {
         try {
             // Send amount in cents to backend for Payment Intent creation
             const res = await axiosSecure.post('/create-payment-intent', { amount: Math.round(fundAmount * 100) });
-            
-            // Debugging log: Check if client secret is received
             console.log("Client Secret received from backend:", res.data.clientSecret);
-            
             setClientSecret(res.data.clientSecret);
         } catch (err) {
             console.error("Error creating payment intent:", err);
-            // Display a more specific error message from the backend if available
             Swal.fire('Error', `Failed to initiate payment: ${err.response?.data?.error || err.message}. Please try again.`, 'error');
-            setClientSecret(''); // Clear client secret on error
+            setClientSecret('');
         }
     };
 
     // Callback function for when payment is successfully processed by CheckoutForm
     const handlePaymentSuccess = () => {
-        fetchFunds(); // Refresh the funds list to show the new donation
+        fetchFunds();
     };
 
     // Handler for closing the fund donation modal
@@ -118,8 +108,6 @@ const Funding = () => {
                 cell: info => info.getValue(),
             },
             {
-                // Assumes backend provides 'donorName' via a lookup or direct storage.
-                // Fallback to 'donorEmail' if 'donorName' is not available.
                 accessorKey: 'donorName',
                 header: 'Donor Name',
                 cell: info => info.getValue() || info.row.original.donorEmail || 'N/A',
@@ -133,11 +121,10 @@ const Funding = () => {
             {
                 accessorKey: 'donatedAt',
                 header: 'Date',
-                // Format date for display
                 cell: info => new Date(info.getValue()).toLocaleDateString(),
             },
         ],
-        [currentPage, limit] // Re-memoize if currentPage or limit changes
+        [currentPage, limit] 
     );
 
     // Initialize React Table instance
@@ -150,7 +137,6 @@ const Funding = () => {
     // Calculate total pages for pagination
     const totalPages = Math.ceil(totalFunds / limit);
 
-    // Show loading spinner while authentication or role is being determined
     if (authLoading || isRoleLoading) return <Loading />;
 
     // Access control: Deny access if user role is not admin, volunteer, or donor
@@ -159,12 +145,12 @@ const Funding = () => {
     }
 
     return (
-        <div className="p-6">
+        <div className="p-2 sm:p-6">
             <h2 className="text-3xl font-bold mb-6 text-base-content text-center">All Funds Received 💰</h2>
 
             {/* Give Fund Button to open the donation modal */}
             <div className="flex justify-center mb-6">
-                <button onClick={handleGiveFundClick} className="btn btn-primary btn-lg rounded-full px-10">
+                <button onClick={handleGiveFundClick} className="btn btn-primary btn-lg rounded-sm px-10">
                     Give Fund
                 </button>
             </div>
@@ -254,7 +240,7 @@ const Funding = () => {
                                 <input
                                     type="number"
                                     step="0.01"
-                                    min="0.50" // Minimum amount for Stripe
+                                    min="0.50" 
                                     placeholder="Enter amount"
                                     className="input input-bordered w-full"
                                     value={fundAmount === 0 ? '' : fundAmount}
@@ -263,7 +249,7 @@ const Funding = () => {
                                 <button
                                     onClick={handleProceedToPayment}
                                     className="btn btn-primary mt-4"
-                                    disabled={fundAmount < 0.50} // Disable if amount is less than Stripe minimum
+                                    disabled={fundAmount < 0.50} 
                                 >
                                     Proceed to Payment
                                 </button>
@@ -272,7 +258,7 @@ const Funding = () => {
                             // Stripe Payment Element - rendered only when clientSecret is available
                             <Elements stripe={stripePromise} options={{ clientSecret }}>
                                 <CheckoutForm
-                                    amount={Math.round(fundAmount * 100)} // Pass amount in cents to CheckoutForm
+                                    amount={Math.round(fundAmount * 100)} 
                                     onClose={handleModalClose}
                                     onPaymentSuccess={handlePaymentSuccess}
                                 />

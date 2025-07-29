@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
-import Swal from 'sweetalert2'; // Assuming you use SweetAlert for user feedback
+import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import Loading from '../../Shared/Loading/Loading';
@@ -8,7 +8,7 @@ import Loading from '../../Shared/Loading/Loading';
 const CheckoutForm = ({ amount, onClose, onPaymentSuccess }) => {
     const stripe = useStripe();
     const elements = useElements();
-    
+
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
 
@@ -19,8 +19,8 @@ const CheckoutForm = ({ amount, onClose, onPaymentSuccess }) => {
         e.preventDefault();
 
         console.log("CheckoutForm: handleSubmit triggered.");
-        console.log("Stripe instance:", !!stripe); // Check if stripe object is available
-        console.log("Elements instance:", !!elements); // Check if elements object is available
+        console.log("Stripe instance:", !!stripe);
+        console.log("Elements instance:", !!elements);
 
         if (!stripe || !elements) {
             setMessage("Stripe.js has not loaded correctly. Please try again.");
@@ -33,7 +33,6 @@ const CheckoutForm = ({ amount, onClose, onPaymentSuccess }) => {
 
         // Confirm the PaymentIntent on the client side
         console.log("Attempting to confirm payment...");
-        // The result of confirmPayment contains either an error or the paymentIntent
         const { error: confirmPaymentError, paymentIntent } = await stripe.confirmPayment({
             elements,
             confirmParams: {
@@ -43,22 +42,18 @@ const CheckoutForm = ({ amount, onClose, onPaymentSuccess }) => {
         });
 
         if (confirmPaymentError) {
-            // An error occurred during payment confirmation (e.g., invalid card details, network error)
             console.error("CheckoutForm: Error during confirmPayment:", confirmPaymentError);
             setMessage(confirmPaymentError.message);
             setIsLoading(false);
             return;
         }
-
-        // If confirmPaymentError is null, then paymentIntent should be available from the result
         console.log("CheckoutForm: confirmPayment completed. Retrieved PaymentIntent status:", paymentIntent.status);
 
         if (paymentIntent.status === 'succeeded') {
             console.log("CheckoutForm: Payment succeeded, recording fund in backend...");
-            // Payment was successful, now record the fund in your backend
             try {
                 await axiosSecure.post('/funds', {
-                    amount: amount / 100, // Convert cents back to dollars for your backend
+                    amount: amount / 100,
                     donorEmail: user?.email,
                     donorName: user?.displayName || user?.email
                 });

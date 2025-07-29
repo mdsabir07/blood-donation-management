@@ -16,7 +16,7 @@ const ContentManagement = () => {
     const [filter, setFilter] = useState('all'); // all, draft, published
     const [page, setPage] = useState(1);
     const [total, setTotal] = useState(0);
-    const limit = 10;
+    const limit = 6;
 
     const isAdmin = role === 'admin';
 
@@ -89,7 +89,7 @@ const ContentManagement = () => {
     };
 
     return (
-        <div className="p-6">
+        <div className="p-2 sm:p-6">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Content Management 📝</h2>
                 <button

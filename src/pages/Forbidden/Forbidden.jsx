@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 
 const Forbidden = () => {
     return (
-        <div className="flex items-center justify-center min-h-screen bg-base-200">
-            <div className="text-center p-6 bg-secondary shadow-lg rounded-xl border border-base-300">
+        <div className="flex p-3 sm:p-0 items-center justify-center min-h-auto sm:min-h-screen bg-base-200">
+            <div className="text-center p-6 shadow-lg hover:shadow-2xl rounded-xl border border-base-300">
                 {/* Lock Icon above the heading */}
                 <FaLock className="text-6xl text-error mx-auto" />
 
@@ -14,7 +14,7 @@ const Forbidden = () => {
 
                 {/* Go back button with home icon */}
                 <Link
-                    className="btn btn-primary text-secondary mt-5 font-bold flex items-center w-fit mx-auto justify-center"
+                    className="btn btn-primary mt-5 font-bold flex items-center w-fit mx-auto justify-center"
                     to="/">
                     <FaHome className="mr-2" /> Go back!
                 </Link>

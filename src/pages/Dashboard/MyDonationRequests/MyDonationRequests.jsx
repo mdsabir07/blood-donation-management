@@ -115,7 +115,7 @@ const MyDonationRequests = () => {
     });
 
     return (
-        <div className="max-w-6xl mx-auto p-6 bg-base-100 shadow rounded">
+        <div className="max-w-6xl mx-auto p-3 sm:p-6 bg-base-100 shadow rounded">
             <h2 className="text-2xl font-bold mb-6">My Donation Requests</h2>
 
             {/* Status Filter */}

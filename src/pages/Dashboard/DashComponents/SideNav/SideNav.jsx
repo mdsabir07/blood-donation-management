@@ -1,6 +1,7 @@
 import ThemeToggle from '../../../Shared/ThemeToggle/ThemeToggle';
 import { Link, NavLink } from 'react-router';
-import { FaUser, FaPlusSquare, FaClipboardList, FaListAlt, FaUsers, FaCog, FaBlog } from 'react-icons/fa';
+import { FaUser, FaPlusSquare, FaClipboardList, FaListAlt, FaUsers, FaCog, FaBlog, FaSignOutAlt } from 'react-icons/fa';
+import AuthLogOut from '../../../Authentication/AuthLogOut/AuthLogOut';
 
 const SideNav = () => {
 
@@ -93,6 +94,12 @@ const SideNav = () => {
                 Add Blog
             </NavLink>
         </li>
+        <li className='flex flex-row items-center whitespace-wrap'>
+            <FaSignOutAlt size={30} className='pr-0'/>
+            <AuthLogOut>
+                Logout
+            </AuthLogOut>
+        </li>
         <li><ThemeToggle /></li>
         <li><Link to="/" className="btn btn-primary rounded-sm px-3 py-3 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300">
             Back to Main Home Pange
@@ -106,7 +113,7 @@ const SideNav = () => {
                 </div>
                 <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                    className="menu menu-sm dropdown-content gap-2 bg-base-100 rounded-box z-1 mt-3 w-xs right-0 p-2 shadow">
                     {navItems}
                 </ul>
             </div>

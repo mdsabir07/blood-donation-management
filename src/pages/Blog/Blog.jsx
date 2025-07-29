@@ -5,13 +5,13 @@ import { Link } from 'react-router';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6); // Number of blogs per page
   const [totalBlogs, setTotalBlogs] = useState(0); // Total number of published blogs
-  const axiosInstance = useAxios(); 
+  const axiosInstance = useAxios();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -36,7 +36,7 @@ const Blog = () => {
     };
 
     fetchBlogs();
-  }, [axiosInstance, currentPage, itemsPerPage]); 
+  }, [axiosInstance, currentPage, itemsPerPage]);
 
   const filteredBlogs = blogs.filter(blog =>
     blog.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -63,17 +63,19 @@ const Blog = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-4">
-      <h1 className="text-4xl font-bold text-center mb-8 text-primary">Our Blog</h1>
+      <div className="flex flex-col sm:flex-row justify-between gap-4 items-center mb-8">
+        <h1 className="text-4xl font-bold text-center text-primary">Our Blog</h1>
 
-      {/* Search Bar */}
-      <div className="mb-8 flex justify-center">
-        <input
-          type="text"
-          placeholder="Search blogs by title..."
-          className="input input-bordered w-full max-w-md rounded-lg shadow-md focus:ring focus:ring-primary focus:border-primary"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        {/* Search Bar */}
+        <div className="flex justify-center">
+          <input
+            type="text"
+            placeholder="Search blogs by title..."
+            className="input input-bordered w-full rounded-lg shadow-md focus:ring focus:ring-primary focus:border-primary"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
       </div>
 
       {filteredBlogs.length === 0 && (
@@ -97,10 +99,12 @@ const Blog = () => {
               </h2>
               {/* Display a snippet of the content */}
               <p className="text-base mb-4 line-clamp-3" dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 80) + '...' }}></p>
-              {/* Added Created and Updated Dates */}
-              <p className="text-sm">Created: {new Date(blog.createdAt).toLocaleDateString()}</p>
-              <p className="text-sm mb-4">Updated: {new Date(blog.updatedAt).toLocaleDateString()}</p>
-              <div className="card-actions justify-end">
+
+              <div className="card-actions justify-between">
+                <div>
+                  <p className="text-sm">Created: {new Date(blog.createdAt).toLocaleDateString()}</p>
+                  <p className="text-sm mb-4">Updated: {new Date(blog.updatedAt).toLocaleDateString()}</p>
+                </div>
                 <Link to={`/blog/${blog._id}`} className="btn btn-primary rounded-sm px-6 py-2 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300">
                   Read More
                 </Link>

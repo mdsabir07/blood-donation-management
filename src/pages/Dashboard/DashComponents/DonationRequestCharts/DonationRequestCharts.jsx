@@ -63,7 +63,7 @@ const DonationRequestCharts = () => {
             <div className="bg-base-100 p-6 rounded-lg shadow-xl">
                 <h2 className="text-2xl font-semibold text-center mb-6 text-secondary">Daily Requests (Last 7 Days)</h2>
                 <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={dailyRequests} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                    <BarChart data={dailyRequests} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
                         <XAxis dataKey="name" axisLine={false} tickLine={false} />
                         <YAxis axisLine={false} tickLine={false} />
@@ -78,7 +78,7 @@ const DonationRequestCharts = () => {
             <div className="bg-base-100 p-6 rounded-lg shadow-xl">
                 <h2 className="text-2xl font-semibold text-center mb-6 text-secondary">Weekly Requests (Last 4 Weeks)</h2>
                 <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={weeklyRequests} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                    <LineChart data={weeklyRequests} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
                         <XAxis dataKey="name" axisLine={false} tickLine={false} />
                         <YAxis axisLine={false} tickLine={false} />
@@ -93,7 +93,7 @@ const DonationRequestCharts = () => {
             <div className="lg:col-span-2 bg-base-100 p-6 rounded-lg shadow-xl">
                 <h2 className="text-2xl font-semibold text-center mb-6 text-secondary">Monthly Requests (Last 6 Months)</h2>
                 <ResponsiveContainer width="100%" height={350}>
-                    <BarChart data={monthlyRequests} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                    <BarChart data={monthlyRequests} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
                         <XAxis dataKey="name" axisLine={false} tickLine={false} />
                         <YAxis axisLine={false} tickLine={false} />

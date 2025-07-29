@@ -38,8 +38,8 @@ const Login = () => {
     }
 
     return (
-        <div className="max-w-7xl mx-auto flex justify-center items-center flex-col md:flex-row gap-5 px-12 my-12">
-            <div className="w-full p-8 space-y-3 rounded-xl border border-gray-300">
+        <div className="max-w-7xl mx-auto flex justify-center items-center flex-col md:flex-row gap-5 px-3 sm:px-12 my-12">
+            <div className="w-full p-4 sm:p-8 space-y-3 rounded-xl border border-gray-300">
                 <h1 className="text-2xl font-bold text-center">Login</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     {/* Email field */}

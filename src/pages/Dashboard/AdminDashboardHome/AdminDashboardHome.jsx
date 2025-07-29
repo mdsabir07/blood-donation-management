@@ -44,7 +44,7 @@ const AdminDashboardHome = () => {
 
             {/* Give Fund Button */}
             <div className="mt-4">
-                <Link to="/dashboard/fund" className="btn btn-primary">
+                <Link to="/dashboard/funding" className="btn btn-primary">
                     💳 Give Fund
                 </Link>
             </div>

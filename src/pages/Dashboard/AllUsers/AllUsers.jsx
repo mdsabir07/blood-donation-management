@@ -58,7 +58,7 @@ const AllUsers = () => {
     const totalPages = Math.ceil(users.length / limit);
 
     return (
-        <div className="p-6">
+        <div className="p-2 sm:p-6">
             <h2 className="text-2xl font-bold mb-4">All Users</h2>
 
             {/* Filter Dropdown */}

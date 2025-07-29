@@ -4,7 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useUserRole from '../../../hooks/useUserRole';
 import useAuth from '../../../hooks/useAuth';
 import Loading from '../../Shared/Loading/Loading';
-import { Link, useNavigate } from 'react-router';
+import { Link, Navigate, useNavigate } from 'react-router';
 
 const AdminDonationRequests = () => {
     const axiosSecure = useAxiosSecure();
@@ -74,13 +74,13 @@ const AdminDonationRequests = () => {
 
     if (authLoading || isRoleLoading) return <Loading />;
     if (role !== 'admin') {
-        return <p className="text-error text-center py-10">Access Denied. Admins only.</p>;
+        return <Navigate to="/forbidden"></Navigate>;
     }
 
     const totalPages = Math.ceil(total / limit);
 
     return (
-        <div className="p-6">
+        <div className="p-2 sm:p-6">
             <h2 className="text-2xl font-bold mb-4 text-base-content">All Blood Donation Requests 🩸</h2>
 
             {requests.length === 0 ? (

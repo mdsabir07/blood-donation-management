@@ -2,23 +2,10 @@ import { NavLink } from 'react-router';
 import DonateBloodLogo from '../DonateBloodLogo/DonateBloodLogo';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import useAuth from '../../../hooks/useAuth';
-import Swal from 'sweetalert2';
+import AuthLogOut from '../../Authentication/AuthLogOut/AuthLogOut';
 
 const Navbar = () => {
-    const { user, logOut } = useAuth();
-    const handleLogOut = () => {
-        logOut()
-            .then(res => {
-                console.log(res);
-                Swal.fire({
-                    icon: "success",
-                    title: "LogOut successful!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            })
-            .catch(error => console.log(error));
-    }
+    const { user } = useAuth();
     const navItems = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/donation-requests">Donation requests</NavLink></li>
@@ -40,7 +27,7 @@ const Navbar = () => {
                         </div>
                         <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-base-100 right-0">
                             <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-                            <li><button onClick={handleLogOut}>Logout</button></li>
+                            <li><AuthLogOut /> </li>
                         </ul>
                     </div>
                 </li>

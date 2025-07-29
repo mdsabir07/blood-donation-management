@@ -50,7 +50,7 @@ const VolunteerDonationRequests = () => {
     }
 
     return (
-        <div className="p-6">
+        <div className="p-2 sm:p-6">
             <h2 className="text-2xl font-bold mb-4 text-base-content">All Donation Requests 🩸</h2>
             {/* Render the table like in your admin version but without Edit/Delete/Approve */}
             {/* Only show status-changing buttons (e.g. Mark as Done, Cancel) */}
