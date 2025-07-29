@@ -141,8 +141,8 @@ const SearchDonors = () => {
             <h1 className="text-4xl font-bold text-center mb-8 text-primary">Find Donors</h1>
 
             {/* Search Form */}
-            <form onSubmit={handleSubmit(onSubmit)} className="bg-base-100 p-8 rounded-lg shadow-xl mb-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="bg-base-100 p-8 rounded-lg shadow-xl mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-6 mb-6">
                     {/* Blood Group Selector */}
                     <div>
                         <label className="label">
@@ -196,23 +196,23 @@ const SearchDonors = () => {
                             ))}
                         </select>
                     </div>
-                </div>
 
-                {/* Search Button */}
-                <div className="text-center">
-                    <button
-                        type="submit"
-                        className="btn btn-primary btn-lg rounded-full px-12 py-3 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-                        disabled={loading}
-                    >
-                        {loading ? (
-                            <>
-                                Searching <Loading /> {/* Use your Loading component here */}
-                            </>
-                        ) : (
-                            'Search Donors'
-                        )}
-                    </button>
+                    {/* Search Button */}
+                    <div className="">
+                        <button
+                            type="submit"
+                            className="btn btn-primary w-full sm:w-auto btn-lg rounded-sm px-12 py-3 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                            disabled={loading}
+                        >
+                            {loading ? (
+                                <>
+                                    Searching <Loading />
+                                </>
+                            ) : (
+                                'Search Donors'
+                            )}
+                        </button>
+                    </div>
                 </div>
             </form>
 
@@ -279,7 +279,7 @@ const SearchDonors = () => {
                         {/* Generate PDF Button */}
                         <div className="text-center mt-4">
                             <button
-                                className="btn btn-success rounded-lg"
+                                className="btn btn-success rounded-sm"
                                 onClick={generatePDF}
                             >
                                 Download PDF
