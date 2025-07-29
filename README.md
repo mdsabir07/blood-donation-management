@@ -2,6 +2,7 @@
 Welcome to the Blood Donation Management System — a full-stack web application designed to streamline and manage blood donation activities. From donor registration to blood request handling and administrative oversight, the platform provides secure, role-based access for users, admins, and content managers.
 
 🔗 Live Website: https://blood-donate-49988.web.app
+
 🛠️ Admin Panel Login:
 Username: sabir@email.com
 Password: 123456
@@ -41,47 +42,29 @@ Featuring animated content using Lottie, icons via React Icons, and optimized fo
 
 🛠️ Built With
 🔧 Backend
-Node.js
-
-Express.js
-
-MongoDB
-
-Firebase Admin SDK (JWT Authentication & Role Verification)
-
-Stripe (Payment Gateway)
-
-dotenv, cors
+* Node.js
+* Express.js
+* MongoDB
+* Firebase Admin SDK (JWT Authentication & Role Verification)
+* Stripe (Payment Gateway)
+* dotenv, cors
 
 🌐 Frontend
-React.js
+* React.js
+* React Router DOM
+* Firebase Authentication
+* Axios
+* Tailwind CSS
+* DaisyUI
+* React Hook Form
+* Tanstack Query & Table
+* Jodit-React (Rich Text Editor)
+* Stripe React SDK
+* Lottie-React
+* React Icons
+* jspdf, jspdf-autotable
 
-React Router DOM
-
-Firebase Authentication
-
-Axios
-
-Tailwind CSS
-
-DaisyUI
-
-React Hook Form
-
-Tanstack Query & Table
-
-Jodit-React (Rich Text Editor)
-
-Stripe React SDK
-
-Lottie-React
-
-React Icons
-
-jspdf, jspdf-autotable
-
-📱 Responsive Design
-Optimized for all screen sizes:
+📱 Responsive Design Optimized for all screen sizes:
 
 📱 Mobile Phones
 

@@ -20,6 +20,7 @@ const DonationDetails = () => {
                 console.error('Failed to load request details', err);
                 setLoading(false);
             });
+            
     }, [id, axiosInstance]);
 
     if (loading) return <Loading />;

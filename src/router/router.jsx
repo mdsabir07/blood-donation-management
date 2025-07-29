@@ -22,6 +22,7 @@ import AdminOrVolunteerRoute from "../routes/AdminOrVolunteerRoute";
 import DonationDetails from "../pages/DonationDetails/DonationDetails";
 import BlogDetails from "../pages/Blog/BlogDetails/BlogDetails";
 import Funding from "../pages/Dashboard/Funding/Funding";
+import Error404 from "../pages/Error404/Error404";
 
 export const router = createBrowserRouter([
     {
@@ -30,85 +31,110 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                Component: Home
+                Component: Home,
+                handle: { title: 'Home - Blood Donation Management' }
             },
             {
                 path: 'donation-requests',
-                Component: DonationRequest
+                Component: DonationRequest,
+                handle: { title: 'Donation request - Blood Donation Management' }
             },
             {
                 path: '/donation-requests/:id',
-                element: <PrivateRoute><DonationDetails /></PrivateRoute>
+                element: <PrivateRoute><DonationDetails /></PrivateRoute>,
+                handle: { title: 'Donation request - Blood Donation Management' }
             },
             {
                 path: 'blog',
-                Component: Blog
+                Component: Blog,
+                handle: { title: 'Blog - Blood Donation Management' }
             },
             {
                 path: 'blog/:id',
-                Component: BlogDetails
+                Component: BlogDetails,
+                handle: { title: 'Blog details - Blood Donation Management' }
             },
             {
                 path: 'register',
-                Component: Register
+                Component: Register,
+                handle: { title: 'Register - Blood Donation Management' }
             },
             {
                 path: 'login',
-                Component: Login
+                Component: Login,
+                handle: { title: 'Login - Blood Donation Management' }
             },
             {
                 path: 'search-donors',
-                Component: SearchDonors
+                Component: SearchDonors,
+                handle: { title: 'Search donors - Blood Donation Management' }
             },
             {
                 path: 'forbidden',
-                Component: Forbidden
+                Component: Forbidden,
+                handle: { title: 'Forbidden - Blood Donation Management' }
             }
         ]
     },
     {
+        path: '*',
+        Component: Error404,
+        handle: { title: '404 - Blood Donation Management' }
+    },
+    {
         path: 'dashboard',
         element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+        handle: { title: 'Dashboard - Blood Donation Management' },
         children: [
             {
                 index: true,
-                Component: DashboardHome
+                Component: DashboardHome,
+                handle: { title: 'Dashboard Home - Blood Donation Management' }
             },
             {
                 path: 'profile',
-                Component: Profile
+                Component: Profile,
+                handle: { title: 'Profile - Blood Donation Management' }
             },
             {
                 path: 'create-donation-request',
-                Component: CreateDonationRequest
+                Component: CreateDonationRequest,
+                handle: { title: 'Create donation request - Blood Donation Management' }
             },
             {
                 path: 'my-donation-requests',
-                Component: MyDonationRequests
+                Component: MyDonationRequests,
+                handle: { title: 'My donation requests - Blood Donation Management' }
             },
             {
                 path: 'all-donation-request',
-                Component: AllDonationRequests
+                Component: AllDonationRequests,
+                handle: { title: 'All donation request - Blood Donation Management' }
             },
             {
                 path: 'all-users',
-                Component: AllUsers
+                Component: AllUsers,
+                handle: { title: 'All users - Blood Donation Management' }
             },
             {
                 path: 'funding',
-                Component: Funding
+                Component: Funding,
+                handle: { title: 'Funding - Blood Donation Management' }
             },
             {
                 path: 'content-management',
-                element: <AdminOrVolunteerRoute><ContentManagement /></AdminOrVolunteerRoute>
+                element: <AdminOrVolunteerRoute><ContentManagement /></AdminOrVolunteerRoute>,
+                handle: { title: 'Content Management - Blood Donation Management' }
             },
             {
                 path: 'content-management/add-blog',
-                element: <AdminOrVolunteerRoute><AddBlog /></AdminOrVolunteerRoute>
+                element: <AdminOrVolunteerRoute><AddBlog /></AdminOrVolunteerRoute>,
+                handle: { title: 'Add blog - Blood Donation Management' }
             },
             {
                 path: 'content-management/edit-blog/:id',
-                element: <AdminOrVolunteerRoute><EditBlog /></AdminOrVolunteerRoute>
+                element: <AdminOrVolunteerRoute><EditBlog /></AdminOrVolunteerRoute>,
+                handle: { title: 'Edit blog - Blood Donation Management' }
             }
 
         ]
