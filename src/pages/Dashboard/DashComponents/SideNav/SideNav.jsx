@@ -62,6 +62,17 @@ const SideNav = () => {
         </li>
         <li>
             <NavLink
+                to="/dashboard/funding"
+                className={({ isActive }) =>
+                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
+                }
+            >
+                <FaUsers className="text-lg" />
+                Funding
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
                 to="/dashboard/content-management"
                 className={({ isActive }) =>
                     isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'

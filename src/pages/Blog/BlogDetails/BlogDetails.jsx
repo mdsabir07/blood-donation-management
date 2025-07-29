@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router';
 import useAxios from '../../../hooks/useAxios';
 import Loading from '../../Shared/Loading/Loading';
+import SocialShareButtons from '../../Shared/SocialShareButtons/SocialShareButtons';
 
 const BlogDetails = () => {
     const { id } = useParams();
@@ -78,6 +79,7 @@ const BlogDetails = () => {
                     {blog.authorId && <span>Author: {blog.authorId}</span>} {/* Display author if available */}
                 </div>
                 <div className="prose lg:prose-xl max-w-none leading-relaxed" dangerouslySetInnerHTML={{ __html: blog.content }}></div>
+                <SocialShareButtons />
             </div>
             <div className="text-center">
                 <Link to="/blog" className="btn btn-primary rounded-sm px-8 py-3 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300">

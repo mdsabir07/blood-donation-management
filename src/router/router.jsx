@@ -21,6 +21,7 @@ import EditBlog from "../pages/Dashboard/Blogs/EditBlog/EditBlog";
 import AdminOrVolunteerRoute from "../routes/AdminOrVolunteerRoute";
 import DonationDetails from "../pages/DonationDetails/DonationDetails";
 import BlogDetails from "../pages/Blog/BlogDetails/BlogDetails";
+import Funding from "../pages/Dashboard/Funding/Funding";
 
 export const router = createBrowserRouter([
     {
@@ -92,6 +93,10 @@ export const router = createBrowserRouter([
             {
                 path: 'all-users',
                 Component: AllUsers
+            },
+            {
+                path: 'funding',
+                Component: Funding
             },
             // ✅ Blog Management Pages
             {

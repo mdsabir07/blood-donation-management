@@ -9,7 +9,7 @@ const Blog = () => {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(3); // Number of blogs per page
+  const [itemsPerPage] = useState(6); // Number of blogs per page
   const [totalBlogs, setTotalBlogs] = useState(0); // Total number of published blogs
   const axiosInstance = useAxios(); 
 
@@ -96,7 +96,7 @@ const Blog = () => {
                 {blog.title}
               </h2>
               {/* Display a snippet of the content */}
-              <p className="text-base mb-4 line-clamp-3" dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 150) + '...' }}></p>
+              <p className="text-base mb-4 line-clamp-3" dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 80) + '...' }}></p>
               {/* Added Created and Updated Dates */}
               <p className="text-sm">Created: {new Date(blog.createdAt).toLocaleDateString()}</p>
               <p className="text-sm mb-4">Updated: {new Date(blog.updatedAt).toLocaleDateString()}</p>
