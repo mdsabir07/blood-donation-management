@@ -10,6 +10,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useUserRole from '../../../hooks/useUserRole';
 import Loading from '../../Shared/Loading/Loading';
 import CheckoutForm from '../CheckoutForm/CheckoutForm';
+import { Navigate } from 'react-router';
 
 const stripePromise = loadStripe(import.meta.env.VITE_payment_key);
 console.log("Stripe Promise loaded:", stripePromise); 
@@ -154,7 +155,7 @@ const Funding = () => {
 
     // Access control: Deny access if user role is not admin, volunteer, or donor
     if (role !== 'admin' && role !== 'volunteer' && role !== 'donor') {
-        return <p className="text-red-500 text-center py-10">Access denied. Please log in with appropriate role.</p>;
+        return <Navigate to="/forbidden"></Navigate>;
     }
 
     return (

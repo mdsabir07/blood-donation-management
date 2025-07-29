@@ -17,7 +17,7 @@ const AdminOrVolunteerRoute = ({ children }) => {
     return children;
   }
 
-  return <p className="text-center text-error py-10">Access Denied</p>;
+  return <Navigate to="/forbidden"></Navigate>;
 };
 
 export default AdminOrVolunteerRoute;

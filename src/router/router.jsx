@@ -98,7 +98,6 @@ export const router = createBrowserRouter([
                 path: 'funding',
                 Component: Funding
             },
-            // ✅ Blog Management Pages
             {
                 path: 'content-management',
                 element: <AdminOrVolunteerRoute><ContentManagement /></AdminOrVolunteerRoute>

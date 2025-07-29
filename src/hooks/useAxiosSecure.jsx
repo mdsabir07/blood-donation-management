@@ -4,18 +4,18 @@ import { useEffect } from 'react';
 import useAuth from './useAuth';
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://b11a12-server-side-mdsabir07.vercel.app',
 });
 
 const useAxiosSecure = () => {
-    const { user, logOut } = useAuth();
+    const { user } = useAuth();
 
     useEffect(() => {
         const interceptor = axiosSecure.interceptors.request.use(
             async (config) => {
                 if (user && user.getIdToken) {
                     try {
-                        const token = await user.getIdToken(); // 🔐 Firebase token
+                        const token = await user.getIdToken();
                         config.headers.Authorization = `Bearer ${token}`;
                     } catch (err) {
                         console.error("Failed to get Firebase token", err);

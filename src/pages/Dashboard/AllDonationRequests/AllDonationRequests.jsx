@@ -3,6 +3,7 @@ import useAuth from '../../../hooks/useAuth';
 import Loading from '../../Shared/Loading/Loading';
 import AdminDonationRequests from '../AdminDashboardHome/AdminDonationRequests';
 import VolunteerDonationRequests from '../VolunteerDashboardHome/VolunteerDonationRequests';
+import { Navigate } from 'react-router';
 
 const AllDonationRequests = () => {
     const { role, isRoleLoading } = useUserRole();
@@ -13,7 +14,7 @@ const AllDonationRequests = () => {
     if (role === 'admin') return <AdminDonationRequests />;
     if (role === 'volunteer') return <VolunteerDonationRequests />;
 
-    return <p className="text-error text-center py-10">Access denied.</p>;
+    return <Navigate to="/forbidden"></Navigate>;
 };
 
 export default AllDonationRequests;

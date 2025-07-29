@@ -51,7 +51,7 @@ const Navbar = () => {
                 <li><NavLink to="/login" className='btn bg-primary'>Login</NavLink></li>
             </>
         )}
-        <li><NavLink to="/donate-blood" className='btn bg-primary'>Donate Blood</NavLink></li>
+        <li><NavLink to="/dashboard/create-donation-request" className='btn bg-primary'>Donate Blood</NavLink></li>
     </>
     return (
         <div className="navbar shadow-sm">

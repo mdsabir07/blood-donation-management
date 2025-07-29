@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useUserRole from '../../../hooks/useUserRole';
 import useAuth from '../../../hooks/useAuth';
 import Loading from '../../Shared/Loading/Loading';
+import { Navigate } from 'react-router';
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
@@ -41,7 +42,7 @@ const AllUsers = () => {
 
     if (authLoading || isRoleLoading) return <Loading />;
     console.log("Role:", role);
-    if (role !== 'admin') return <p className="text-red-500 text-center py-10">Access denied. Admins only.</p>;
+    if (role !== 'admin') return <Navigate to="/forbidden"></Navigate>;
 
     const handleUpdate = async (id, data) => {
         try {
