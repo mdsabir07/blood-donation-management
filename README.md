@@ -1,5 +1,5 @@
 <!-- Cover Image -->
-![My Portfolio Banner](.github/sabir-portfolio.png)
+![Blood Donation Management Banner](.github/sabir-portfolio.png)
 
 🩸 Blood Donation Management System
 Welcome to the Blood Donation Management System — a full-stack web application designed to streamline and manage blood donation activities. From donor registration to blood request handling and administrative oversight, the platform provides secure, role-based access for users, admins, and content managers.
