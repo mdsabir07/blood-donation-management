@@ -23,7 +23,7 @@ const DonationRequests = () => {
     if (loading) return <Loading />;
 
     return (
-        <div className="p-6 max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4">
             <h2 className="text-2xl sm:text-5xl font-bold mb-8 text-center">🩸Blood Donation Requests</h2>
 
             {requests.length === 0 ? (
