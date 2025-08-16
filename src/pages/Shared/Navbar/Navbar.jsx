@@ -18,9 +18,9 @@ const Navbar = () => {
     }, []);
 
     const navItems = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/donation-requests">Donation requests</NavLink></li>
-        <li><NavLink to="/blog">Blog</NavLink></li>
+        <li><NavLink className={({isActive})=> isActive?"text-primary":"hover:text-primary font-semibold"} to="/">Home</NavLink></li>
+        <li><NavLink className={({isActive})=> isActive?"text-primary":"hover:text-primary font-semibold"} to="/donation-requests">Donation requests</NavLink></li>
+        <li><NavLink className={({isActive})=> isActive?"text-primary":"hover:text-primary font-semibold"} to="/blog">Blog</NavLink></li>
 
         {user ? (
             <>
@@ -37,7 +37,7 @@ const Navbar = () => {
                             </div>
                         </div>
                         <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-base-100 right-0">
-                            <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+                            <li><NavLink className={({isActive})=> isActive?"text-primary":"hover:text-primary font-semibold"} to="/dashboard">Dashboard</NavLink></li>
                             <li><AuthLogOut /> </li>
                         </ul>
                     </div>
@@ -46,10 +46,10 @@ const Navbar = () => {
             </>
         ) : (
             <>
-                <li><NavLink to="/login" className='btn bg-primary'>Login</NavLink></li>
+                <li><NavLink to="/login" className='btn btn-primary'>Login</NavLink></li>
             </>
         )}
-        <li><NavLink to="/dashboard/create-donation-request" className='btn bg-primary'>Donate Blood</NavLink></li>
+        <li><NavLink to="/dashboard/create-donation-request" className='btn btn-primary'>Donate Blood</NavLink></li>
     </>
     return (
         <div className={`shadow-sm fixed top-0 left-0 right-0 py-2 z-50 transition-colors duration-300 ${scrolled ? "shadow-md dark:backdrop-blur-2xl" : "bg-transparent"}`}>
@@ -70,7 +70,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow gap-2 right-0">
+                            className="menu menu-sm dropdown-content w-full min-w-2xs right-0 bg-base-100 rounded-box z-1 mt-3 p-2 shadow gap-2">
                             {navItems}
                         </ul>
                     </div>
