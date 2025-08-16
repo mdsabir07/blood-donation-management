@@ -137,7 +137,7 @@ const SearchDonors = () => {
 
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto py-4">
             <h1 className="text-4xl font-bold text-center mb-8 text-primary">Find Donors</h1>
 
             {/* Search Form */}

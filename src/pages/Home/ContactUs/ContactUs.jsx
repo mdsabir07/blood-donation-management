@@ -54,7 +54,7 @@ const ContactUs = () => {
 
                 {/* Contact Info */}
                 <div className="p-3 sm:p-6 rounded-box shadow flex flex-col justify-center items-start space-y-4">
-                    <img src={getInTouch} alt="" className="w-full sm:max-w-lg" />
+                    <img src={getInTouch} alt="" className="w-full sm:max-w-lg" data-aos="slide-left" data-aos-delay="500" data-aos-duration="1500" />
                     <p>We're here to support your donation journey.</p>
                     <div className="flex flex-col sm:flex-row gap-5 items-center justify-start sm:justify-center">
                         <div className="flex items-center gap-3">

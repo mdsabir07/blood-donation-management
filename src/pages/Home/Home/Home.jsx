@@ -7,8 +7,12 @@ const Home = () => {
     return (
         <div className='max-w-7xl mx-auto px-4 pt-10 lg:pt-0'>
             <Banner />
-            <SearchDonors />
-            <Features />
+            <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="1500">
+                <SearchDonors />
+            </div>
+            <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="3000">
+                <Features />
+            </div>
             <ContactUs />
         </div>
     );
