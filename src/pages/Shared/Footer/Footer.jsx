@@ -7,7 +7,7 @@ const Footer = () => {
         <NavLink className={({ isActive }) => isActive ? "text-primary" : "hover:text-primary"} to="/blog">Blog</NavLink>
     </>
     return (
-        <footer className="border-t-gray-200 border py-10 w-full">
+        <footer className="py-10 w-full">
             <div className="flex flex-col md:flex-row justify-between gap-8 max-w-7xl mx-auto px-4">
                 <aside className='gap-5 flex flex-col max-w-96'>
                     <DonateBloodLogo />
