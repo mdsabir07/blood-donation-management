@@ -50,7 +50,7 @@ const DonorDashboardHome = () => {
     };
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="p-3 md:p-6 space-y-6">
             <h2 className="text-2xl font-bold">Welcome, {user?.displayName || 'Donor'} 👋</h2>
 
             {requests.length > 0 && (

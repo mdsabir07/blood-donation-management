@@ -39,28 +39,28 @@ const SocialShareButtons = ({ shareUrl, shareTitle }) => {
             <span className="text-lg font-semibold text-base-content mr-2">Share this post:</span>
             <button
                 onClick={() => openShareWindow(getShareLink('facebook'))}
-                className="btn btn-circle btn-primary text-white text-xl hover:scale-110 transition-transform duration-200"
+                className="btn btn-circle btn-primary text-white text-base sm:text-xl hover:scale-110 transition-transform duration-200"
                 aria-label="Share on Facebook"
             >
                 <FaFacebook />
             </button>
             <button
                 onClick={() => openShareWindow(getShareLink('twitter'))}
-                className="btn btn-circle btn-info text-white text-xl hover:scale-110 transition-transform duration-200"
+                className="btn btn-circle btn-info text-white text-base sm:text-xl hover:scale-110 transition-transform duration-200"
                 aria-label="Share on Twitter"
             >
                 <FaTwitter />
             </button>
             <button
                 onClick={() => openShareWindow(getShareLink('linkedin'))}
-                className="btn btn-circle btn-accent text-white text-xl hover:scale-110 transition-transform duration-200"
+                className="btn btn-circle btn-accent text-white text-base sm:text-xl hover:scale-110 transition-transform duration-200"
                 aria-label="Share on LinkedIn"
             >
                 <FaLinkedin />
             </button>
             <button
                 onClick={() => openShareWindow(getShareLink('whatsapp'))}
-                className="btn btn-circle btn-success text-white text-xl hover:scale-110 transition-transform duration-200"
+                className="btn btn-circle btn-success text-white text-base sm:text-xl hover:scale-110 transition-transform duration-200"
                 aria-label="Share on WhatsApp"
             >
                 <FaWhatsapp />

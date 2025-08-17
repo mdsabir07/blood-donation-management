@@ -1,6 +1,6 @@
 import ThemeToggle from '../../../Shared/ThemeToggle/ThemeToggle';
 import { Link, NavLink } from 'react-router';
-import { FaUser, FaPlusSquare, FaClipboardList, FaListAlt, FaUsers, FaCog, FaBlog, FaSignOutAlt } from 'react-icons/fa';
+import { FaUser, FaPlusSquare, FaClipboardList, FaListAlt, FaUsers, FaCog, FaBlog, FaSignOutAlt, FaHome } from 'react-icons/fa';
 import AuthLogOut from '../../../Authentication/AuthLogOut/AuthLogOut';
 
 const SideNav = () => {
@@ -8,10 +8,17 @@ const SideNav = () => {
     const navItems = <>
         <li>
             <NavLink
+            className={({isActive})=> isActive?"text-primary flex items-center gap-2":"hover:text-primary font-semibold flex items-center gap-2"}
+                to="/dashboard"
+            >
+                <FaHome className="text-xl" />
+                Dashboard
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                className={({isActive})=> isActive?"text-primary flex items-center gap-2":"hover:text-primary font-semibold flex items-center gap-2"}
                 to="/dashboard/profile"
-                className={({ isActive }) =>
-                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
-                }
             >
                 <FaUser className="text-lg" />
                 Profile
@@ -20,9 +27,7 @@ const SideNav = () => {
         <li>
             <NavLink
                 to="/dashboard/create-donation-request"
-                className={({ isActive }) =>
-                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
-                }
+                className={({isActive})=> isActive?"text-primary flex items-center gap-2":"hover:text-primary font-semibold flex items-center gap-2"}
             >
                 <FaPlusSquare className="text-lg" />
                 Create Donation Request
@@ -31,9 +36,7 @@ const SideNav = () => {
         <li>
             <NavLink
                 to="/dashboard/my-donation-requests"
-                className={({ isActive }) =>
-                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
-                }
+                className={({isActive})=> isActive?"text-primary flex items-center gap-2":"hover:text-primary font-semibold flex items-center gap-2"}
             >
                 <FaClipboardList className="text-lg" />
                 My Donation Requests
@@ -42,9 +45,7 @@ const SideNav = () => {
         <li>
             <NavLink
                 to="/dashboard/all-donation-request"
-                className={({ isActive }) =>
-                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
-                }
+                className={({isActive})=> isActive?"text-primary flex items-center gap-2":"hover:text-primary font-semibold flex items-center gap-2"}
             >
                 <FaListAlt className="text-lg" />
                 All Donation Requests
@@ -53,9 +54,7 @@ const SideNav = () => {
         <li>
             <NavLink
                 to="/dashboard/all-users"
-                className={({ isActive }) =>
-                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
-                }
+                className={({isActive})=> isActive?"text-primary flex items-center gap-2":"hover:text-primary font-semibold flex items-center gap-2"}
             >
                 <FaUsers className="text-lg" />
                 All Users
@@ -64,9 +63,7 @@ const SideNav = () => {
         <li>
             <NavLink
                 to="/dashboard/funding"
-                className={({ isActive }) =>
-                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
-                }
+                className={({isActive})=> isActive?"text-primary flex items-center gap-2":"hover:text-primary font-semibold flex items-center gap-2"}
             >
                 <FaUsers className="text-lg" />
                 Funding
@@ -75,9 +72,7 @@ const SideNav = () => {
         <li>
             <NavLink
                 to="/dashboard/content-management"
-                className={({ isActive }) =>
-                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
-                }
+                className={({isActive})=> isActive?"text-primary flex items-center gap-2":"hover:text-primary font-semibold flex items-center gap-2"}
             >
                 <FaCog className="text-lg" />
                 Content Management
@@ -86,16 +81,14 @@ const SideNav = () => {
         <li>
             <NavLink
                 to="/dashboard/content-management/add-blog"
-                className={({ isActive }) =>
-                    isActive ? 'active flex items-center gap-2' : 'flex items-center gap-2'
-                }
+                className={({isActive})=> isActive?"text-primary flex items-center gap-2":"hover:text-primary font-semibold flex items-center gap-2"}
             >
                 <FaBlog className="text-lg" />
                 Add Blog
             </NavLink>
         </li>
         <li className='flex flex-row items-center whitespace-wrap'>
-            <FaSignOutAlt size={30} className='pr-0'/>
+            <FaSignOutAlt size={30} className='pr-0' />
             <AuthLogOut>
                 Logout
             </AuthLogOut>
@@ -113,7 +106,7 @@ const SideNav = () => {
                 </div>
                 <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content gap-2 bg-base-100 rounded-box z-1 mt-3 w-xs right-0 p-2 shadow">
+                    className="menu menu-sm dropdown-content gap-2 bg-base-100 rounded-box z-1 mt-3 w-xs left-0 right-0 p-2 shadow">
                     {navItems}
                 </ul>
             </div>

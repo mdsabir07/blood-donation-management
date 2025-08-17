@@ -174,12 +174,12 @@ const Profile = () => {
                 </form>
             </div>
 
-            <div className="w-full flex justify-center">
+            <div className="w-full h-full lg:max-h-[618px] flex justify-center">
                 <img
                     src={avatarUrl}
                     alt="User avatar"
                     title={profile.name}
-                    className="rounded-xl border shadow"
+                    className="rounded-xl object-cover w-full object-top border shadow"
                 />
             </div>
         </div>

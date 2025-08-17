@@ -57,28 +57,28 @@ const BlogDetails = () => {
     }
 
     return (
-        <div className="max-w-5xl mx-auto p-4">
-            <div className="bg-base-100 shadow-xl rounded-lg p-8 mb-8">
+        <div className="w-full sm:max-w-5xl mx-auto px-4 my-12 sm:my-20">
+            <div className="bg-base-100 shadow-xl rounded-lg p-3 sm:p-8 mb-8">
                 {blog.thumbnailUrl && (
-                    <figure className="mb-6 rounded-lg mx-auto max-w-2xl flex justify-center items-center">
+                    <figure className="mb-6 rounded-lg flex justify-center items-center">
                         <img
                             src={blog.thumbnailUrl}
                             alt={blog.title}
-                            className="w-full h-auto object-cover"
+                            className="w-full h-auto sm:h-[450px] object-cover"
                             onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/800x400/CCCCCC/333333?text=No+Image"; }}
                         />
                     </figure>
                 )}
                 <div className="text-sm mb-6">
 
-                    <h1 className="text-4xl font-bold text-center mb-6 text-primary">{blog.title}</h1>
+                    <h1 className="text-3xl sm:text-5xl font-bold text-center mb-6 text-primary">{blog.title}</h1>
                     <div>
                         <span>Published: {new Date(blog.createdAt).toLocaleDateString()}</span><br />
                         <span>Updated: {new Date(blog.updatedAt).toLocaleDateString()}</span>
                     </div>
                     {blog.authorId && <span>Author: {blog.authorId}</span>} {/* Display author if available */}
                 </div>
-                <div className="prose lg:prose-xl max-w-none leading-relaxed" dangerouslySetInnerHTML={{ __html: blog.content }}></div>
+                <div className="prose lg:prose-xl max-w-none leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: blog.content }}></div>
                 <SocialShareButtons />
             </div>
             <div className="text-center">

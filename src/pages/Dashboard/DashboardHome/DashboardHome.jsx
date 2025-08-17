@@ -2,6 +2,7 @@
 
 import useAuth from '../../../hooks/useAuth';
 import useUserRole from '../../../hooks/useUserRole';
+import Loading from '../../Shared/Loading/Loading';
 import AdminDashboardHome from '../AdminDashboardHome/AdminDashboardHome';
 import VolunteerDashboardHome from '../VolunteerDashboardHome/VolunteerDashboardHome';
 import DonorDashboardHome from './DonorDashboardHome/DonorDashboardHome';
@@ -10,7 +11,7 @@ const DashboardHome = () => {
     const { user, loading } = useAuth();
     const { role, isLoading: roleLoading } = useUserRole();
 
-    if (loading || roleLoading) return <div className="text-center py-20">Loading...</div>;
+    if (loading || roleLoading) return <div className="text-center py-20"><Loading /></div>;
 
     if (role === 'donor') return <DonorDashboardHome />;
     if (role === 'volunteer') return <VolunteerDashboardHome />;

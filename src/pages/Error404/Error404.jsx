@@ -4,7 +4,9 @@ const Error404 = () => {
     return (
         <div className="flex min-h-screen justify-center items-center">
             <div className='max-w-[1280px] mx-auto px-6 lg:px-0 grid gap-5 pt-8 pb-14 text-center justify-center'>
-                <h1 className='text-error font-extrabold text-5xl'>404 - Page Not found!</h1>
+                <h1 className='text-error font-extrabold text-7xl sm:text-[300px]'>404</h1>
+                <h2 className='text-error font-extrabold text-5xl'>Page Not found!</h2>
+
                 <p className="text-xl md:text-2xl my-3">
                     Opps! The page <code className='text-secondary font-bold'>{location.pathname}</code> you're looking for doesn't exist.
                 </p>

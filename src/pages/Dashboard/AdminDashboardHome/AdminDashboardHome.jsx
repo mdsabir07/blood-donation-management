@@ -38,7 +38,7 @@ const AdminDashboardHome = () => {
     }
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="p-0 sm:p-6 space-y-6">
             {/* Welcome Section */}
             <h2 className="text-2xl font-bold">Welcome, {user?.displayName || 'Admin'} 👋</h2>
 
@@ -50,9 +50,9 @@ const AdminDashboardHome = () => {
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                 {/* Total Donors */}
-                <div className="bg-base-200 p-6 rounded shadow flex items-center gap-4">
+                <div className="bg-base-200 p-3 sm:p-6 rounded shadow flex items-center gap-4">
                     <FaUsers className="text-3xl text-primary" />
                     <div>
                         <h3 className="text-xl font-bold">{stats.totalUsers}</h3>
@@ -61,7 +61,7 @@ const AdminDashboardHome = () => {
                 </div>
 
                 {/* Total Funding */}
-                <div className="bg-base-200 p-6 rounded shadow flex items-center gap-4">
+                <div className="bg-base-200 p-3 sm:p-6 rounded shadow flex items-center gap-4">
                     <FaHandHoldingUsd className="text-3xl text-green-600" />
                     <div>
                         <h3 className="text-xl font-bold">${stats.totalFunding.toFixed(2)}</h3>
@@ -70,7 +70,7 @@ const AdminDashboardHome = () => {
                 </div>
 
                 {/* Total Requests */}
-                <div className="bg-base-200 p-6 rounded shadow flex items-center gap-4">
+                <div className="bg-base-200 p-3 sm:p-6 rounded shadow flex items-center gap-4">
                     <FaTint className="text-3xl text-red-500" />
                     <div>
                         <h3 className="text-xl font-bold">{stats.totalRequests}</h3>

@@ -74,7 +74,7 @@ const Blog = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 pt-20">
+    <div className="max-w-7xl mx-auto px-4 py-12 sm:py-20">
       <div className="flex flex-col sm:flex-row justify-between gap-4 items-center mb-8">
         <h1 className="text-4xl font-bold text-center text-primary">Our Blog</h1>
 

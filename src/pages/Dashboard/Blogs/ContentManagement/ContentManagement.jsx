@@ -121,14 +121,14 @@ const ContentManagement = () => {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {blogs.map((blog) => (
-                        <div key={blog._id} className="card bg-base-100 shadow-md p-4">
+                        <div key={blog._id} className="card bg-base-100 shadow-md p-2 md:p-4">
                             <img
                                 src={blog.thumbnailUrl}
                                 alt={blog.title}
                                 className="w-full h-40 object-cover rounded"
                             />
                             <h3 className="text-xl font-semibold mt-2">{blog.title}</h3>
-                            <p className="text-sm text-gray-600 mb-2">
+                            <p className="text-sm mb-2">
                                 Status: <span className="capitalize">{blog.status}</span>
                             </p>
                             <div className="flex gap-2 flex-wrap">

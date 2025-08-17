@@ -93,7 +93,7 @@ const EditBlog = () => {
 
 
     return (
-        <div className="p-6 max-w-4xl mx-auto">
+        <div className="p-3 md:p-6">
             <h2 className="text-2xl font-bold mb-4 text-base-content">Edit Blog ✏️</h2>
 
             <form onSubmit={handleUpdate} className="space-y-4">
