@@ -18,9 +18,15 @@ const Navbar = () => {
     }, []);
 
     const navItems = <>
-        <li><NavLink className={({isActive})=> isActive?"text-primary":"hover:text-primary font-semibold"} to="/">Home</NavLink></li>
-        <li><NavLink className={({isActive})=> isActive?"text-primary":"hover:text-primary font-semibold"} to="/donation-requests">Donation requests</NavLink></li>
-        <li><NavLink className={({isActive})=> isActive?"text-primary":"hover:text-primary font-semibold"} to="/blog">Blog</NavLink></li>
+        <li>
+            <NavLink className={({ isActive }) => isActive ? "text-primary" : "hover:text-primary font-semibold"} to="/">Home</NavLink>
+        </li>
+        <li>
+            <NavLink className={({ isActive }) => isActive ? "text-primary" : "hover:text-primary font-semibold"} to="/donation-requests">Donation requests</NavLink>
+        </li>
+        <li>
+            <NavLink className={({ isActive }) => isActive ? "text-primary" : "hover:text-primary font-semibold"} to="/blog">Blog</NavLink>
+        </li>
 
         {user ? (
             <>

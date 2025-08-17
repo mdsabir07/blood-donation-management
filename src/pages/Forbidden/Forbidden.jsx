@@ -1,4 +1,4 @@
-import { FaLock, FaHome } from 'react-icons/fa'; // Import relevant icons from react-icons
+import { FaLock, FaHome } from 'react-icons/fa';
 import { Link } from 'react-router';
 
 const Forbidden = () => {
