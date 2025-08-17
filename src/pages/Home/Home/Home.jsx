@@ -3,6 +3,7 @@ import Features from '../Features/Features';
 import ContactUs from '../ContactUs/ContactUs';
 import SearchDonors from '../../SearchDonors/SearchDonors';
 import ReUseBlogCard from '../../Blog/ReUseBlogCard';
+import TestimonialCarousel from '../../Shared/TestimonialCarousel/TestimonialCarousel';
 
 const Home = () => {
     return (
@@ -14,15 +15,20 @@ const Home = () => {
             <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="3000">
                 <Features />
             </div>
-            <ContactUs />
 
-            <div className="mt-10">
-                <h2 className="text-3xl font-bold mb-6">DESC Blog Posts</h2>
-                <ReUseBlogCard limit={3} sortOrder="desc" />
-                <h2 className="text-3xl font-bold mb-6">ASC Blog Posts</h2>
-                <ReUseBlogCard limit={3} sortOrder="asc" />
-                <h2 className="text-3xl font-bold mb-6">Featured Blog Posts</h2>
+            <div className="mt-10" data-aos="fade-up" data-aos-delay="500" data-aos-duration="3000">
+                <h2 className="text-4xl font-bold text-center mb-10">Featured Blog Posts</h2>
                 <ReUseBlogCard limit={3} featuredOnly={true} sortOrder="asc" />
+            </div>
+            <ContactUs />
+            <div className="mt-10 py-8" data-aos="fade-up" data-aos-delay="500" data-aos-duration="3000">
+                <h2 className="text-4xl font-bold text-center mb-10">Popular Blog Posts</h2>
+                <ReUseBlogCard limit={3} sortOrder="asc" />
+            </div>
+            <TestimonialCarousel />
+            <div className="mb-10 sm:mb-20" data-aos="fade-up" data-aos-delay="500" data-aos-duration="3000">
+                <h2 className="text-4xl font-bold text-center mb-10">Latest Blog Posts</h2>
+                <ReUseBlogCard limit={3} sortOrder="desc" />
             </div>
         </div>
     );
