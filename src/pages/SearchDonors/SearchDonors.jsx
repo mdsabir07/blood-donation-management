@@ -3,7 +3,7 @@ import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-tabl
 import { useForm } from 'react-hook-form';
 import useAxios from '../../hooks/useAxios';
 import useDistricts from '../../hooks/useDistricts';
-import Loading from '../Shared/Loading/Loading'; // Assuming this is your Loading spinner component
+import Loading from '../Shared/Loading/Loading'; 
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 
@@ -133,7 +133,6 @@ const SearchDonors = () => {
         // Save the generated PDF
         doc.save('test.pdf');
     };
-
 
 
     return (
